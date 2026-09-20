@@ -1,4 +1,4 @@
-Asher Plotsky: Asher-Branch
+
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
