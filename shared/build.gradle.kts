@@ -59,6 +59,12 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        val androidMain by getting {
+            dependencies {
+                // ADD THE GOOGLE MAPS DEPENDENCY HERE:
+                implementation("com.google.android.gms:play-services-maps:20.0.0")
+            }
+        }
     }
 }
 
