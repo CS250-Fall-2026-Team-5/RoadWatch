@@ -35,6 +35,6 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run Multiplatform & Unit Tests
-        run: ./gradlew check -PMAPS_API_KEY="${{ secrets.MAPS_API_KEY }}"
+        run: ./gradlew check -PMAPS_API_KEY="${{ secrets.MAPS_API_KEY || 'dummy_key_for_ci_tests' }}" --no-configuration-cache
 #Generated Actions Workflow using AI. This runs a test making sure that the Kotlin Multiplatform
 #works after each pull request.
