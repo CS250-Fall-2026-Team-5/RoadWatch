@@ -17,4 +17,4 @@ if (localPropertiesFile.exists()) {
         localProperties.load(stream)
     }
 }
-val MAPS_API_KEY: String = localProperties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
+val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: ""
