@@ -17,4 +17,9 @@ if (localPropertiesFile.exists()) {
         localProperties.load(stream)
     }
 }
-val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: ""
+plugins.withType<com.android.build.gradle.AppPlugin> {
+    extensions.configure<com.android.build.gradle.internal.dsl.BaseAppModuleExtension> {
+        val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
+        defaultConfig.manifestPlaceholders["MAPS_API_KEY"] = MAPS_API_KEY
+    }
+}
