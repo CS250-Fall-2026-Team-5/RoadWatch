@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -6,7 +7,13 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 }
-
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { load(it) }
+    }
+}
+val MAPS_API_KEY: String = localProperties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
 kotlin {
     listOf(
         iosArm64(),
@@ -15,6 +22,12 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            freeCompilerArgs += listOf("-Xgmessages-api-key=$MAPS_API_KEY")
+        }
+    }
+    androidComponents {
+        onVariants { variant ->
+            variant.manifestPlaceholders.put("MAPS_API_KEY", MAPS_API_KEY)
         }
     }
     
@@ -45,6 +58,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
+            implementation("com.google.android.gms:play-services-maps:20.0.0")
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)

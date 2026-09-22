@@ -1,0 +1,40 @@
+name: KMP Pull Request Verification
+
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux-validation:
+    name: Run JVM & Android Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Run Multiplatform & Unit Tests
+        run: ./gradlew check -PMAPS_API_KEY="${{ secrets.MAPS_API_KEY || 'dummy_key_for_ci_tests' }}" --no-configuration-cache
+#Generated Actions Workflow using AI. This runs a test making sure that the Kotlin Multiplatform
+#works after each pull request.
