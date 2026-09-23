@@ -8,8 +8,11 @@ plugins {
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
+    id(com.codingfeline.buildkonfig") version "0.22.0" apply false
 }
 val localProperties = Properties()
+val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
+val IOS_MAPS_API_KEY: String = project.findProperty("IOS_MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
 
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {
@@ -19,7 +22,6 @@ if (localPropertiesFile.exists()) {
 }
 plugins.withType<com.android.build.gradle.AppPlugin> {
     extensions.configure<com.android.build.api.dsl.ApplicationExtension> {
-        val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
         defaultConfig.manifestPlaceholders["MAPS_API_KEY"] = MAPS_API_KEY
     }
 }
