@@ -9,10 +9,12 @@ plugins {
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.buildkonfig) apply false
+    alias(libs.plugins.kotlinCocoapods) apply false
 }
 val localProperties = Properties()
 val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
 val IOS_MAPS_API_KEY: String = project.findProperty("IOS_MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
+val DESKTOP_API_KEY: String = project.findProperty("DESKTOP_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
 
 val localPropertiesFile = rootProject.file("local.properties")
 if (localPropertiesFile.exists()) {

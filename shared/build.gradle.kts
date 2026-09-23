@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.buildkonfig)
+    alias(libs.plugins.kotlinCocoapods)
 }
 val localProperties = Properties().apply {
     val localPropertiesFile = rootProject.file("local.properties")
@@ -13,7 +15,17 @@ val localProperties = Properties().apply {
         localPropertiesFile.inputStream().use { load(it) }
     }
 }
-val MAPS_API_KEY: String = localProperties.getProperty("GOOGLE_MAPS_API_KEY") ?: ""
+val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY").toString() ?: ""
+buildkonfig {
+    packageName = "edu.sdsu.cs250.team5.road_watch"
+    defaultConfigs {
+        val IOS_MAPS_API_KEY: String = project.findProperty("IOS_MAPS_API_KEY").toString() ?: ""
+        val DESKTOP_API_KEY: String = project.findProperty("DESKTOP_API_KEY").toString() ?: ""
+
+        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "IOS_MAPS_API_KEY" , IOS_MAPS_API_KEY)
+        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "DESKTOP_API_KEY" , DESKTOP_API_KEY)
+    }
+}
 kotlin {
     listOf(
         iosArm64(),
@@ -22,7 +34,6 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Shared"
             isStatic = true
-            freeCompilerArgs += listOf("-Xgmessages-api-key=$MAPS_API_KEY")
         }
     }
     androidComponents {
@@ -30,7 +41,18 @@ kotlin {
             variant.manifestPlaceholders.put("MAPS_API_KEY", MAPS_API_KEY)
         }
     }
-    
+
+    cocoapods {
+        summary = "Class Project Map App"
+        homepage = "https://github.com"
+        version = "1.0"
+        ios.deploymentTarget = "15.0"
+
+        pod("GoogleMaps") {
+            version = "8.4.0"
+        }
+    }
+
     jvm()
     
     android {
@@ -69,6 +91,7 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.swmansion.kmpMaps.core)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
