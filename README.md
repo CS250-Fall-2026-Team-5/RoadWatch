@@ -1,5 +1,7 @@
 Asher Plotsky: Asher-Branch
+
 Grant Phillips: grant/hazard-repository
+
 Moises Cortes: Basic Ui and Search Branch
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
