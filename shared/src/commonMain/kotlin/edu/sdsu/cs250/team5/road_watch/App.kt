@@ -83,7 +83,6 @@ fun App() {
                     .pointerInput(Unit) {
                         detectDragGestures(
                             onDrag = { change, dragAmount ->
-                                change.consume()
                                 pinOffset += dragAmount
                             }
                             )
