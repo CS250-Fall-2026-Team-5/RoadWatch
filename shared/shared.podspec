@@ -1,18 +1,18 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'shared'
     spec.version                  = '1.0'
-    spec.homepage                 = 'https://github.com'
+    spec.homepage                 = 'https://github.com/CS250-Fall-2026-Team-5/RoadWatch'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'Class Project Map App'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/shared.framework'
+    spec.summary                  = 'Roadwatch'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/Shared.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target    = '15.0'
     spec.dependency 'GoogleMaps', '8.4.0'
-    if !Dir.exist?('build/cocoapods/framework/shared.framework') || Dir.empty?('build/cocoapods/framework/shared.framework')
+    if !Dir.exist?('build/cocoapods/framework/Shared.framework') || Dir.empty?('build/cocoapods/framework/Shared.framework')
         raise "
-        Kotlin framework 'shared' doesn't exist yet, so a proper Xcode project can't be generated.
+        Kotlin framework 'Shared' doesn't exist yet, so a proper Xcode project can't be generated.
         'pod install' should be executed after running ':generateDummyFramework' Gradle task:
             ./gradlew :shared:generateDummyFramework
         Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
@@ -22,7 +22,7 @@ Pod::Spec.new do |spec|
     }
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':shared',
-        'PRODUCT_MODULE_NAME' => 'shared',
+        'PRODUCT_MODULE_NAME' => 'Shared',
     }
     spec.script_phases = [
         {

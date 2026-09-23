@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.buildkonfig)
-    alias(libs.plugins.kotlinCocoapods)
+    kotlin("native.cocoapods")
 }
 val localProperties = Properties().apply {
     val localPropertiesFile = rootProject.file("local.properties")
@@ -27,15 +27,10 @@ buildkonfig {
     }
 }
 kotlin {
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "Shared"
-            isStatic = true
-        }
-    }
+
+    iosArm64()
+    iosSimulatorArm64()
+
     androidComponents {
         onVariants { variant ->
             variant.manifestPlaceholders.put("MAPS_API_KEY", MAPS_API_KEY)
@@ -43,13 +38,19 @@ kotlin {
     }
 
     cocoapods {
-        summary = "Class Project Map App"
-        homepage = "https://github.com"
+        summary = "Roadwatch"
+        homepage = "https://github.com/CS250-Fall-2026-Team-5/RoadWatch"
         version = "1.0"
         ios.deploymentTarget = "15.0"
 
+        framework {
+            baseName = "Shared"
+            isStatic = true
+        }
+
         pod("GoogleMaps") {
             version = "8.4.0"
+            extraOpts += listOf("-compiler-option", "-fmodules")
         }
     }
 
@@ -92,6 +93,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(libs.swmansion.kmpMaps.core)
+            implementation("dev.jordond.compass:geolocation:4.0.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

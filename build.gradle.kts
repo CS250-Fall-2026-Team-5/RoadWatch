@@ -9,7 +9,6 @@ plugins {
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.buildkonfig) apply false
-    alias(libs.plugins.kotlinCocoapods) apply false
 }
 val localProperties = Properties()
 val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
