@@ -1,0 +1,15 @@
+package edu.sdsu.cs250.team5.road_watch
+
+import androidx.compose.ui.geometry.Offset
+import kotlin.test.Test
+import kotlin.test.assertEquals
+
+class PinLogicTest{
+@Test
+fun dragPin() {
+val startingPosition = Offset(0f,0f)
+val dragAmount = Offset(11f, 6f)
+val newPosition = startingPosition + dragAmount
+assertEquals(Offset(11f,6f), newPosition)
+}
+}
