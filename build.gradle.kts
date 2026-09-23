@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
-    id(com.codingfeline.buildkonfig") version "0.22.0" apply false
+    alias(libs.plugins.buildkonfig) apply false
 }
 val localProperties = Properties()
 val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
