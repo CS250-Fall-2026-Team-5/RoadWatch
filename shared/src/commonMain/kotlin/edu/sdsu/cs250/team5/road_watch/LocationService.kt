@@ -2,6 +2,8 @@ package edu.sdsu.cs250.team5.road_watch
 
 import dev.jordond.compass.geolocation.Geolocator
 import dev.jordond.compass.geolocation.GeolocatorResult
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 
 class LocationService {
     private val geolocator: Geolocator? = provideGeolocator()
@@ -9,20 +11,21 @@ class LocationService {
     suspend fun fetchCurrentLocation(): LocationCoordinates? {
         val locator = geolocator ?: return null
 
-        return when (val result = locator.current()) {
-            is GeolocatorResult.Success -> {
-                val coordinates = result.data.coordinates
+        return try {
+            locator.startTracking()
 
-                LocationCoordinates(
-                    latitude = coordinates.latitude,
-                    longitude = coordinates.longitude
-                )
-            }
+            val location = locator.locationUpdates.first()
+            val coordinates = location.coordinates
 
-            is GeolocatorResult.Error -> {
-                println("Failed to fetch location: $result")
-                null
-            }
+            LocationCoordinates(
+                latitude = coordinates.latitude,
+                longitude = coordinates.longitude
+            )
+        } catch (e: Exception) {
+            println("Location error: ${e.message}")
+            null
+        } finally {
+            locator.stopTracking()
         }
     }
 }

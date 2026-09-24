@@ -2,11 +2,7 @@ package edu.sdsu.cs250.team5.road_watch
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.ComposeUIViewController
-import platform.UIKit.UIViewController
-import cocoapods.GoogleMaps.GMSMapView
 import cocoapods.GoogleMaps.GMSServices
-
-import edu.sdsu.cs250.team5.road_watch.BuildKonfig
 
 
 actual fun createMainViewController(content: @Composable () -> Unit): Any {

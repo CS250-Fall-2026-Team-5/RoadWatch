@@ -82,8 +82,9 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.compose.uiTooling)
             implementation("com.google.android.gms:play-services-maps:20.0.0")
-            implementation("dev.jordond.compass:geolocation-mobile:4.0.0")
+            implementation("dev.jordond.compass:geolocation-android-gms:4.0.0")
             implementation("com.google.maps.android:maps-compose:8.4.0")
+            implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
         }
         commonMain.dependencies {
             implementation(libs.compose.runtime)

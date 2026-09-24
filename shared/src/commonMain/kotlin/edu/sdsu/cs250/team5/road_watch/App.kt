@@ -30,6 +30,7 @@ import roadwatch.shared.generated.resources.compose_multiplatform
 @Composable
 @Preview
 fun App() {
+//    LocationScreen()
     MaterialTheme{
         //Creating basic box background
         Box( modifier = Modifier
@@ -67,7 +68,7 @@ fun App() {
                     .background(MaterialTheme.colorScheme.surfaceVariant),
                     contentAlignment = Alignment.Center
                     ){
-                
+
                 //Implementing skeleton pin and logic
                 Text(
                     text = "|",

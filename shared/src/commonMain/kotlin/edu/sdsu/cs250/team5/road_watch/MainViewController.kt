@@ -1,20 +1,29 @@
 package edu.sdsu.cs250.team5.road_watch
 
 import androidx.compose.runtime.Composable
-import edu.sdsu.cs250.team5.road_watch.LocationCoordinates
-import edu.sdsu.cs250.team5.road_watch.LocationService
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import androidx.compose.runtime.mutableStateOf
 
 expect fun createMainViewController(content: @Composable () -> Unit): Any
-fun loadLocation() {
-    val locationService = LocationService()
-    viewModelScope.launch {
-        val coordinates = locationService.fetchCurrentLocation()
+class MainViewController : ViewModel() {
+    val coordinates = mutableStateOf<LocationCoordinates?>(null)
+    val error = mutableStateOf<String?>(null)
 
-        coordinates?.let {
-            println("Lat: ${it.latitude}, Lng: ${it.longitude}")
+    fun loadLocation() {
+        viewModelScope.launch {
+            try {
+                val result = LocationService().fetchCurrentLocation()
+
+                if (result == null) {
+                    error.value = "Could not get device location"
+                } else {
+                    coordinates.value = result
+                }
+            } catch (e: Exception) {
+                error.value = e.message ?: "Location error"
+            }
         }
     }
 }
