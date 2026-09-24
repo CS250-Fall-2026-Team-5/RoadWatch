@@ -17,6 +17,7 @@ material3 = "1.12.0-alpha03"
 buildkonfig = "0.22.0"
 kmpMaps = "0.9.1"
 compass = "4.0.0"
+mapsCompose = "8.4.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -41,6 +42,7 @@ swmansion-kmpMaps-core = { module = "com.swmansion.kmpmaps:core", version.ref = 
 swmansion-kmpMaps-googleMaps = { module = "com.swmansion.kmpmaps:google-maps", version.ref = "kmpMaps" }
 compass-geolocation = { module = "dev.jordond.compass:geolocation", version.ref = "compass" }
 compass-geolocation-mobile = { module = "dev.jordond.compass:geolocation-mobile", version.ref = "compass" }
+maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

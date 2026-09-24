@@ -4,6 +4,6 @@ import dev.jordond.compass.geolocation.Geolocator
 import dev.jordond.compass.geolocation.mobile
 import dev.jordond.compass.geolocation.Locator
 
-actual fun provideGeolocator(): Geolocator {
+actual fun provideGeolocator(): Geolocator? {
     return Geolocator.mobile()
 }
