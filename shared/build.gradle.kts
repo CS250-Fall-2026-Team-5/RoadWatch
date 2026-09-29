@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -15,15 +16,20 @@ val localProperties = Properties().apply {
         localPropertiesFile.inputStream().use { load(it) }
     }
 }
-val MAPS_API_KEY: String = project.findProperty("MAPS_API_KEY").toString() ?: ""
+// Read properties passed via command line (-P) or fallback locally
+val mapsKey = (project.findProperty("MAPS_API_KEY") as? String) ?: "LOCAL_DEV_MAPS_KEY"
+val iosMapsKey = (project.findProperty("IOS_MAPS_API_KEY") as? String) ?: "LOCAL_DEV_IOS_KEY"
+val desktopKey = (project.findProperty("DESKTOP_API_KEY") as? String) ?: "LOCAL_DEV_DESKTOP_KEY"
+
 buildkonfig {
     packageName = "edu.sdsu.cs250.team5.road_watch"
-    defaultConfigs {
-        val IOS_MAPS_API_KEY: String = project.findProperty("IOS_MAPS_API_KEY").toString() ?: ""
-        val DESKTOP_API_KEY: String = project.findProperty("DESKTOP_API_KEY").toString() ?: ""
+    exposeObjectWithName = "BuildKonfig"
 
-        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "IOS_MAPS_API_KEY" , IOS_MAPS_API_KEY)
-        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "DESKTOP_API_KEY" , DESKTOP_API_KEY)
+    defaultConfigs {
+        // Enclose values in single-escaped quotes for proper string literals
+        buildConfigField(STRING, "IOS_API_KEY", "\"$iosMapsKey\"")
+        buildConfigField(STRING, "DESKTOP_API_KEY", "\"$desktopKey\"")
+        buildConfigField(STRING, "MAPS_API_KEY", "\"$mapsKey\"")
     }
 }
 kotlin {
@@ -31,11 +37,7 @@ kotlin {
     iosArm64()
     iosSimulatorArm64()
 
-    androidComponents {
-        onVariants { variant ->
-            variant.manifestPlaceholders.put("MAPS_API_KEY", MAPS_API_KEY)
-        }
-    }
+
 
     cocoapods {
         summary = "Roadwatch"
@@ -60,8 +62,9 @@ kotlin {
        namespace = "edu.sdsu.cs250.team5.road_watch.shared"
        compileSdk = libs.versions.android.compileSdk.get().toInt()
        minSdk = libs.versions.android.minSdk.get().toInt()
-    
-       compilerOptions {
+
+
+        compilerOptions {
            jvmTarget = JvmTarget.JVM_11
        }
        androidResources {

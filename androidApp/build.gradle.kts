@@ -25,11 +25,14 @@ android {
 
     defaultConfig {
         applicationId = "edu.sdsu.cs250.team5.road_watch"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0"
-        manifestPlaceholders["MAPS_API_KEY"] = project.findProperty("MAPS_API_KEY")?.toString() ?: "PLACEHOLDER_KEY"
+        minSdk = 24
+        targetSdk = 35
+
+        // Read the exact command line property your GitHub script passes (-P)
+        val mapsKey = (project.findProperty("MAPS_API_KEY") as? String) ?: "PLACEHOLDER_KEY"
+
+        // This is 100% guaranteed to resolve inside an application module!
+        manifestPlaceholders["MAPS_API_KEY_MANIFEST"] = mapsKey
     }
     packaging {
         resources {
