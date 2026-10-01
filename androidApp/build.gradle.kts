@@ -1,8 +1,15 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+}
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) {
+        file.inputStream().use { load(it) }
+    }
 }
 
 kotlin {
@@ -18,21 +25,21 @@ dependencies {
     implementation(libs.compose.uiToolingPreview)
     debugImplementation(libs.compose.uiTooling)
 }
+val mapsKey = providers.gradleProperty("MAPS_API_KEY")
+    .orElse(providers.provider { localProperties.getProperty("MAPS_API_KEY") })
+    .getOrElse("LOCAL_DEV_MAPS_KEY")
+
 
 android {
     namespace = "edu.sdsu.cs250.team5.road_watch"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
+
     defaultConfig {
         applicationId = "edu.sdsu.cs250.team5.road_watch"
         minSdk = 24
         targetSdk = 35
-
-        // Read the exact command line property your GitHub script passes (-P)
-        val mapsKey = (project.findProperty("MAPS_API_KEY") as? String) ?: "PLACEHOLDER_KEY"
-
-        // This is 100% guaranteed to resolve inside an application module!
-        manifestPlaceholders["MAPS_API_KEY_MANIFEST"] = mapsKey
+        manifestPlaceholders["MAPS_API_KEY"] = mapsKey
     }
     packaging {
         resources {

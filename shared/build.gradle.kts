@@ -11,15 +11,23 @@ plugins {
     kotlin("native.cocoapods")
 }
 val localProperties = Properties().apply {
-    val localPropertiesFile = rootProject.file("local.properties")
-    if (localPropertiesFile.exists()) {
-        localPropertiesFile.inputStream().use { load(it) }
+    val file = rootProject.file("local.properties")
+    if (file.exists()) {
+        file.inputStream().use { load(it) }
     }
 }
 // Read properties passed via command line (-P) or fallback locally
-val mapsKey = (project.findProperty("MAPS_API_KEY") as? String) ?: "LOCAL_DEV_MAPS_KEY"
-val iosMapsKey = (project.findProperty("IOS_MAPS_API_KEY") as? String) ?: "LOCAL_DEV_IOS_KEY"
-val desktopKey = (project.findProperty("DESKTOP_API_KEY") as? String) ?: "LOCAL_DEV_DESKTOP_KEY"
+val mapsKey = providers.gradleProperty("MAPS_API_KEY")
+    .orElse(providers.provider { localProperties.getProperty("MAPS_API_KEY") })
+    .getOrElse("LOCAL_DEV_MAPS_KEY")
+
+val iosMapsKey = providers.gradleProperty("IOS_MAPS_API_KEY")
+    .orElse(providers.provider { localProperties.getProperty("IOS_MAPS_API_KEY") })
+    .getOrElse("LOCAL_DEV_IOS_KEY")
+
+val desktopKey = providers.gradleProperty("DESKTOP_API_KEY")
+    .orElse(providers.provider { localProperties.getProperty("DESKTOP_API_KEY") })
+    .getOrElse("LOCAL_DEV_DESKTOP_KEY")
 
 buildkonfig {
     packageName = "edu.sdsu.cs250.team5.road_watch"
@@ -27,9 +35,9 @@ buildkonfig {
 
     defaultConfigs {
         // Enclose values in single-escaped quotes for proper string literals
-        buildConfigField(STRING, "IOS_API_KEY", "\"$iosMapsKey\"")
-        buildConfigField(STRING, "DESKTOP_API_KEY", "\"$desktopKey\"")
-        buildConfigField(STRING, "MAPS_API_KEY", "\"$mapsKey\"")
+        buildConfigField(STRING, "IOS_API_KEY", iosMapsKey)
+        buildConfigField(STRING, "DESKTOP_API_KEY", desktopKey)
+        buildConfigField(STRING, "MAPS_API_KEY", mapsKey)
     }
 }
 kotlin {

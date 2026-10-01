@@ -2,7 +2,7 @@ name: KMP Pull Request Verification
 
 on:
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: [ "main", "Asher-Branch" ]
     paths-ignore:
       - '**.md'
       - 'docs/**'
