@@ -27,7 +27,6 @@ actual fun platformMap(
     val context = LocalContext.current
     var isMapsInitialized by remember { mutableStateOf(false) }
     LaunchedEffect(context) {
-        // Simply force-trigger renderer initialization inside the working framework
         com.google.android.gms.maps.MapsInitializer.initialize(context, com.google.android.gms.maps.MapsInitializer.Renderer.LATEST) {
             isMapsInitialized = true
         }
