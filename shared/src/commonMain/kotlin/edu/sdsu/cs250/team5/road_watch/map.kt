@@ -19,23 +19,25 @@ expect fun platformMap(
 @Composable
 fun LocationScreen() {
     val controller = remember { MainViewController() }
+    val currentCoordinates = controller.coordinates.value
+    val currentError = controller.error.value
 
     LaunchedEffect(Unit) {
         controller.loadLocation()
     }
 
     when {
-        controller.error.value != null -> {
-            Text("Error: ${controller.error.value}")
+        currentError != null -> {
+            Text("Error: $currentError")
         }
 
-        controller.coordinates.value == null -> {
+        currentCoordinates == null -> {
             CircularProgressIndicator()
         }
 
         else -> {
             platformMap(
-                coordinates = controller.coordinates.value,
+                coordinates = currentCoordinates,
                 modifier = Modifier.fillMaxSize()
             )
         }
