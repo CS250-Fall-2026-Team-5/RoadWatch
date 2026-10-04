@@ -7,6 +7,7 @@ import  androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
+import androidx.compose.material3.TextField
 import androidx.compose.foundation.layout.size
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -35,30 +36,30 @@ fun App() {
         var showLogin by remember {
             mutableStateOf(false)
         }
+        var searchText by remember {
+            mutableStateOf("")
+        }
         
         //Creating basic box background main screen hud
         Box( modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
            ) {
-            //Creating temporary placeholder map
-            Text(
-                text = "Map Placeholder",
-                modifier = Modifier
-                .align(Alignment.TopCenter)
-                .padding(top = 40.dp)
-                )
-                //Search bar creation top right
-                Button(
-                    onClick = {
-                        //Ability to click no search function yet
-                    },
+            //Creating barebones search box for searching through google maps
+            TextField(
+                //value of search box changes to user prompt
+                value = searchText,
+                onValueChange = {
+                    searchText = it
+                },
+                placeHolder = {
+                    Text("Search maps")
+                },
                     modifier = Modifier
                     .align(Alignment.TopCenter)
                     .padding(18.dp)
-                    ){
                     Text("Search Maps")
-                }
+            )
                 //hide login screen
         if (showLogin){
             Box(
