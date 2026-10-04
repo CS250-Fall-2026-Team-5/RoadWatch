@@ -26,12 +26,17 @@ import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.geometry.Offset
 import roadwatch.shared.generated.resources.Res
 import roadwatch.shared.generated.resources.compose_multiplatform
+import androidx.compose.ui.unit.sp
 
 @Composable
 @Preview
 fun App() {
     MaterialTheme{
-        //Creating basic box background
+        var showLogin by remember {
+            mutableStateOf(false)
+        }
+        
+        //Creating basic box background main screen hud
         Box( modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
@@ -49,11 +54,42 @@ fun App() {
                         //Ability to click no search function yet
                     },
                     modifier = Modifier
-                    .align(Alignment.TopEnd)
+                    .align(Alignment.TopCenter)
                     .padding(18.dp)
                     ){
                     Text("Search Maps")
                 }
+                //hide login screen
+        if (showLogin){
+            Box(
+                modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(top = 80.dp, end = 18.dp)
+                .size(width = 250.dp, height = 280.dp)
+                .background(
+                    MaterialTheme.colorScheme.surfaceVariant
+                    )
+                ){
+                Text(
+                    text = "Login",
+                    modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 18.dp)
+                    )
+            }
+        }
+        //Implementing login screen
+                Button(
+                    onClick = {
+                        showLogin = !showLogin
+                    },
+                    modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(40.dp)
+                    ){
+                    Text("Login")
+                }
+        
                 //Sets current position of pin on home page
                 var pinOffset by remember {
                     mutableStateOf(Offset.Zero)
@@ -63,14 +99,14 @@ fun App() {
                     modifier = Modifier
                     .align(Alignment.BottomStart)
                     .padding(20.dp)
-                    .size(150.dp)
+                    .size(100.dp)
                     .background(MaterialTheme.colorScheme.surfaceVariant),
                     contentAlignment = Alignment.Center
                     ){
-                
                 //Implementing skeleton pin and logic
                 Text(
-                    text = "|",
+                    text = "📍",
+                    fontSize = 32.sp,
                     modifier = Modifier
                     .offset {
                         IntOffset(
