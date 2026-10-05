@@ -36,8 +36,14 @@ fun App() {
         var showLogin by remember {
             mutableStateOf(false)
         }
+        var showReportBox by remember {
+            mutableStateOf(false)
+        }
         var searchText by remember {
             mutableStateOf("")
+        }
+        var isLoggedIn by remember {
+            mutableStateOf(false)
         }
         
         //Creating basic box background main screen hud
@@ -119,6 +125,11 @@ fun App() {
                         detectDragGestures(
                             onDrag = { change, dragAmount ->
                                 pinOffset += dragAmount
+                            },
+                            onDragEnd = {
+                                if(isLoggedIn) {
+                                    showReportBox = true
+                                }
                             }
                             )
                     }
