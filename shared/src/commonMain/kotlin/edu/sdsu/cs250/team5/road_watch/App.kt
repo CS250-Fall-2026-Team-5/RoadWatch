@@ -48,6 +48,10 @@ fun App() {
         var hazardDescription by remember {
             mutableStateOf("")
         }
+        var descriptionError by remember {
+            mutableStateOf("")
+        }
+        
         
         //Creating basic box background main screen hud
         Box( modifier = Modifier
@@ -126,6 +130,15 @@ fun App() {
                         value = hazardDescription,
                         onValueChange = {
                             hazardDescription = it
+                            if (it.isEmpty()){
+                                descriptionError = "Description cannot be blank, please try again."
+                            }
+                            else if (it.length > 500) {
+                                descriptionError = "Description cannot be more than 500 letters."
+                            }
+                            else {
+                                descriptionError = ""
+                            }
                         },
                         placeholder = {
                             Text("Enter your description..")
