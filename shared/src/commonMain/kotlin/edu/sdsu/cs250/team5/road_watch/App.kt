@@ -52,14 +52,13 @@ fun App() {
                 onValueChange = {
                     searchText = it
                 },
-                placeHolder = {
+                placeholder = {
                     Text("Search maps")
                 },
                     modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(18.dp)
-                    Text("Search Maps")
-            )
+                    .padding(20.dp)
+                    )
                 //hide login screen
         if (showLogin){
             Box(
