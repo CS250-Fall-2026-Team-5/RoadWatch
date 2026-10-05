@@ -45,6 +45,9 @@ fun App() {
         var isLoggedIn by remember {
             mutableStateOf(false)
         }
+        var hazardDescription by remember {
+            mutableStateOf("")
+        }
         
         //Creating basic box background main screen hud
         Box( modifier = Modifier
@@ -65,7 +68,7 @@ fun App() {
                     .align(Alignment.TopCenter)
                     .padding(20.dp)
                     )
-                //hide login screen
+                //adding login variable and description variable, however can not store user description for now
         if (showLogin){
             Box(
                 modifier = Modifier
@@ -75,13 +78,74 @@ fun App() {
                 .background(
                     MaterialTheme.colorScheme.surfaceVariant
                     )
+                .padding(18.dp)
                 ){
-                Text(
-                    text = "Login",
-                    modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .padding(top = 18.dp)
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                    Text(
+                        text = "Login:",
+                        style = MaterialTheme.typography.headlineSmall
+                        )
+                    Button(
+                        onClick = {
+                            isLoggedIn = true
+                            showLogin = false
+                        },
+                        modifier = Modifier.padding(top = 30.dp)
+                        ) {
+                        Text("Log In")
+                    }
+                }
+            }
+        }
+        //Enables hazard description box if user is logged in
+        if(showReportBox && isLoggedIn){
+            Box(
+                modifier = Modifier
+                .align(Alignment.Center)
+                .size(width = 300.dp, height = 300.dp)
+                .background(    
+                    MaterialTheme.colorScheme.surfaceVariant
                     )
+                .padding(20.dp)
+                ){
+                Column(
+                    modifier = Modifier.fillMaxSize()
+                    ){
+                    Text(
+                        text = "Hazard Report",
+                        style = MaterialTheme.typography.headlineSmall
+                        )
+                    Text(
+                        text = "Describe the hazard as well as possible:",
+                        modifier = Modifier.padding(top = 16.dp)
+                        )
+                    TextField(
+                        value = hazardDescription,
+                        onValueChange = {
+                            hazardDescription = it
+                        },
+                        placeholder = {
+                            Text("Enter your description..")
+                        },
+                        modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 12.dp)
+                        )
+                    Button(
+                        onClick = {
+                            showReportBox = false
+                            hazardDescription = ""
+                        },
+                        modifier = Modifier
+                        .padding(top = 16.dp)
+                        .align(Alignment.End)
+                        ){
+                        Text("Submit Report")
+                    }
+                }
             }
         }
         //Implementing login screen
