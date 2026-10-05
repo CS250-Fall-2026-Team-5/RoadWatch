@@ -109,12 +109,18 @@ kotlin {
             implementation(libs.swmansion.kmpMaps.core)
             implementation("dev.jordond.compass:geolocation:4.0.0")
             implementation("androidx.lifecycle:lifecycle-viewmodel:2.11.0")
+            implementation("dev.jordond.compass:geocoder:4.0.0")
+            implementation("dev.jordond.compass:geocoder-web-googlemaps:4.0.0")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
         iosMain.dependencies {
             implementation("dev.jordond.compass:geolocation-mobile:4.0.0")
+        }
+        jvmMain.dependencies {
+            implementation("dev.jordond.compass:geocoder-jvm:4.0.0")
+            implementation("dev.jordond.compass:geocoder-web-googlemaps-jvm:4.0.0")
         }
     }
 }

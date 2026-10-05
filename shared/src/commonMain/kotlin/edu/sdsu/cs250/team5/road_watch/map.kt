@@ -21,25 +21,36 @@ fun LocationScreen() {
     val controller = remember { MainViewController() }
     val currentCoordinates = controller.coordinates.value
     val currentError = controller.error.value
+    val platform = remember { getPlatform() }
+    val isJvm = platform.name.startsWith("Java ")
 
     LaunchedEffect(Unit) {
-        controller.loadLocation()
+        if (!isJvm) {
+            controller.loadLocation()
+        }
     }
+    if (isJvm) {
+        platformMap(
+            coordinates = null,
+            modifier = Modifier.fillMaxSize()
+        )
+    }
+    else {
+        when {
+            currentError != null -> {
+                Text("Error: $currentError")
+            }
 
-    when {
-        currentError != null -> {
-            Text("Error: $currentError")
-        }
+            currentCoordinates == null -> {
+                CircularProgressIndicator()
+            }
 
-        currentCoordinates == null -> {
-            CircularProgressIndicator()
-        }
-
-        else -> {
-            platformMap(
-                coordinates = currentCoordinates,
-                modifier = Modifier.fillMaxSize()
-            )
+            else -> {
+                platformMap(
+                    coordinates = currentCoordinates,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
     }
 }
