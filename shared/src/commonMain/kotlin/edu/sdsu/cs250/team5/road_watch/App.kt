@@ -30,67 +30,66 @@ import roadwatch.shared.generated.resources.compose_multiplatform
 @Composable
 @Preview
 fun App() {
-    LocationScreen()
-//    MaterialTheme{
-//        //Creating basic box background
-//        Box( modifier = Modifier
-//            .fillMaxSize()
-//            .background(MaterialTheme.colorScheme.background)
-//           ) {
-//            //Creating temporary placeholder map
-//            Text(
-//                text = "Map Placeholder",
-//                modifier = Modifier
-//                .align(Alignment.TopCenter)
-//                .padding(top = 40.dp)
-//                )
-//                //Search bar creation top right
-//                Button(
-//                    onClick = {
-//                        //Ability to click no search function yet
-//                    },
-//                    modifier = Modifier
-//                    .align(Alignment.TopEnd)
-//                    .padding(18.dp)
-//                    ){
-//                    Text("Search Maps")
-//                }
-//                //Sets current position of pin on home page
-//                var pinOffset by remember {
-//                    mutableStateOf(Offset.Zero)
-//                }
-//                //Implementing box to keep pin inside box itself is in background
-//                Box(
-//                    modifier = Modifier
-//                    .align(Alignment.BottomStart)
-//                    .padding(20.dp)
-//                    .size(150.dp)
-//                    .background(MaterialTheme.colorScheme.surfaceVariant),
-//                    contentAlignment = Alignment.Center
-//                    ){
-//
-//                //Implementing skeleton pin and logic
-//                Text(
-//                    text = "|",
-//                    modifier = Modifier
-//                    .offset {
-//                        IntOffset(
-//                            pinOffset.x.roundToInt(),
-//                            pinOffset.y.roundToInt()
-//                            )
-//                    }
-//                    //Implement dragging gestures from our input device
-//                    .pointerInput(Unit) {
-//                        detectDragGestures(
-//                            onDrag = { change, dragAmount ->
-//                                pinOffset += dragAmount
-//                            }
-//                            )
-//                    }
-//                    )
-//                }
-//        }
-//    }
+    MaterialTheme{
+        //Creating basic box background
+        Box( modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+           ) {
+            //Creating temporary placeholder map
+            Text(
+                text = "Map Placeholder",
+                modifier = Modifier
+                .align(Alignment.TopCenter)
+                .padding(top = 40.dp)
+                )
+                //Search bar creation top right
+                Button(
+                    onClick = {
+                        //Ability to click no search function yet
+                    },
+                    modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(18.dp)
+                    ){
+                    Text("Search Maps")
+                }
+                //Sets current position of pin on home page
+                var pinOffset by remember {
+                    mutableStateOf(Offset.Zero)
+                }
+                //Implementing box to keep pin inside box itself is in background
+                Box(
+                    modifier = Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(20.dp)
+                    .size(150.dp)
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
+                    contentAlignment = Alignment.Center
+                    ){
+                
+                //Implementing skeleton pin and logic
+                Text(
+                    text = "|",
+                    modifier = Modifier
+                    .offset {
+                        IntOffset(
+                            pinOffset.x.roundToInt(),
+                            pinOffset.y.roundToInt()
+                            )
+                    }
+                    //Implement dragging gestures from our input device
+                    .pointerInput(Unit) {
+                        detectDragGestures(
+                            onDrag = { change, dragAmount ->
+                                pinOffset += dragAmount
+                            }
+                            )
+                    }
+                    )
+                }
+        }
+    }
 }
                 
                     
