@@ -60,6 +60,11 @@ kotlin {
             implementation(libs.compose.uiTooling)
             implementation("com.google.android.gms:play-services-maps:20.0.0")
         }
+
+        jvmMain.dependencies {
+            implementation("org.xerial:sqlite-jdbc:3.53.4.0")
+        }
+
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
