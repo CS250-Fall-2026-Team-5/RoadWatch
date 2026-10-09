@@ -97,6 +97,11 @@ kotlin {
             implementation("com.google.maps.android:maps-compose:8.4.0")
             implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
         }
+
+        jvmMain.dependencies {
+            implementation("org.xerial:sqlite-jdbc:3.53.4.0")
+        }
+
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
