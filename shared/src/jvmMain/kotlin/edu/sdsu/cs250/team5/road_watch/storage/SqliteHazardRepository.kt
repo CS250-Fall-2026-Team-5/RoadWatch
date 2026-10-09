@@ -19,6 +19,9 @@ class SqliteHazardRepository(
     private val databaseUrl: String = "jdbc:sqlite:roadwatch.db"
 ) : HazardRepository {
 
+    // Fixed table name used by the repository's SQL statements.
+    private val tableName = "reports"
+
     /**
      * Validates and stores a report, then returns its database-assigned ID.
      * The description, type, and coordinates are stored unchanged.
@@ -46,10 +49,10 @@ class SqliteHazardRepository(
 
         // use closes the connection even if an operation fails.
         return DriverManager.getConnection(databaseUrl).use { connection ->
-            // Bind user input to placeholders rather than SQL text.
+            // The table name is fixed internally; user values use placeholders.
             connection.prepareStatement(
                 """
-                INSERT INTO reports (type, description, lat, lng, image)
+                INSERT INTO $tableName (type, description, lat, lng, image)
                 VALUES (?, ?, ?, ?, ?)
                 """.trimIndent()
             ).use { statement ->
@@ -96,7 +99,7 @@ class SqliteHazardRepository(
         return DriverManager.getConnection(databaseUrl).use { connection ->
             connection.createStatement().use { statement ->
                 statement.executeQuery(
-                    "SELECT * FROM reports ORDER BY id"
+                    "SELECT * FROM $tableName ORDER BY id"
                 ).use { result ->
                     buildList {
                         // Advance through the rows and convert each to a report.
@@ -115,7 +118,7 @@ class SqliteHazardRepository(
     override fun getReport(reportId: Long): HazardReport? {
         return DriverManager.getConnection(databaseUrl).use { connection ->
             connection.prepareStatement(
-                "SELECT * FROM reports WHERE id = ?"
+                "SELECT * FROM $tableName WHERE id = ?"
             ).use { statement ->
                 statement.setLong(1, reportId)
 
