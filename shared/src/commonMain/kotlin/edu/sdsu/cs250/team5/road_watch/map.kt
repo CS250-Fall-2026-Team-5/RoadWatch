@@ -31,7 +31,10 @@ fun LocationScreen() {
     }
     if (isJvm) {
         platformMap(
-            coordinates = null,
+            coordinates = LocationCoordinates(
+                latitude = 32.7757,
+                longitude = -117.0719
+                ),
             modifier = Modifier.fillMaxSize()
         )
     }
