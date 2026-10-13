@@ -1,7 +1,12 @@
+
 package edu.sdsu.cs250.team5.road_watch
-import androidx.compose.material3.Text
+
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.swmansion.kmpmaps.core.*
 import kotlinx.coroutines.Dispatchers
@@ -20,7 +25,13 @@ actual fun platformMap(
         mutableStateOf(coordinates)
     }
 
+    var lookupFinished by remember {
+        mutableStateOf(false)
+    }
+
     LaunchedEffect(coordinates) {
+        lookupFinished = false
+
         mapCoordinates = coordinates ?: withContext(Dispatchers.IO) {
             getCoordinatesFromAddressJvm(
                 "6075 Aztec Circle Dr, San Diego, CA 92182"
@@ -33,37 +44,45 @@ actual fun platformMap(
                     )
                 }
         }
+
+        lookupFinished = true
     }
 
     val location = mapCoordinates
 
-    if (location != null) {
-        val mapLocation = Coordinates(
-            latitude = location.latitude,
-            longitude = location.longitude
-        )
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        when {
+            location == null && !lookupFinished -> {
+                CircularProgressIndicator()
+            }
 
-        Map(
-            modifier = modifier,
-            cameraPosition = CameraPosition(
-                coordinates = mapLocation,
-                zoom = 15f
-            ),
-            markers = listOf(
-                Marker(
-                    coordinates = mapLocation,
-                    title = "San Diego State University"
+            location == null -> {
+                Text("Address lookup failed: no coordinates returned.")
+            }
+
+            else -> {
+                val mapLocation = Coordinates(
+                    latitude = location.latitude,
+                    longitude = location.longitude
                 )
-            )
-        )
-    } else {
-        androidx.compose.material3.Text(
-            text = "Map is not working",
-            modifier = modifier
-           )
-    Text(
-        text = "Desktop map reached",
-        modifier = modifier
-        )
+
+                Map(
+                    modifier = Modifier.fillMaxSize(),
+                    cameraPosition = CameraPosition(
+                        coordinates = mapLocation,
+                        zoom = 15f
+                    ),
+                    markers = listOf(
+                        Marker(
+                            coordinates = mapLocation,
+                            title = "San Diego State University"
+                        )
+                    )
+                )
+            }
+        }
     }
 }
