@@ -62,7 +62,7 @@ actual fun platformMap(
     //         modifier = modifier
     //        )
     Text(
-        text = "Desktop map reached"
+        text = "Desktop map reached",
         modifier = modifier
         )
     }
