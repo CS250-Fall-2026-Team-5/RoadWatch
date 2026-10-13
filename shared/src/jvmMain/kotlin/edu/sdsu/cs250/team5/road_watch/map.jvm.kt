@@ -37,29 +37,33 @@ actual fun platformMap(
 
     val location = mapCoordinates
 
-    if (location != null) {
-        val mapLocation = Coordinates(
-            latitude = location.latitude,
-            longitude = location.longitude
-        )
+    // if (location != null) {
+    //     val mapLocation = Coordinates(
+    //         latitude = location.latitude,
+    //         longitude = location.longitude
+    //     )
 
-        Map(
-            modifier = modifier,
-            cameraPosition = CameraPosition(
-                coordinates = mapLocation,
-                zoom = 15f
-            ),
-            markers = listOf(
-                Marker(
-                    coordinates = mapLocation,
-                    title = "San Diego State University"
-                )
-            )
+    //     Map(
+    //         modifier = modifier,
+    //         cameraPosition = CameraPosition(
+    //             coordinates = mapLocation,
+    //             zoom = 15f
+    //         ),
+    //         markers = listOf(
+    //             Marker(
+    //                 coordinates = mapLocation,
+    //                 title = "San Diego State University"
+    //             )
+    //         )
+    //     )
+    // } else {
+    //     androidx.compose.material3.Text(
+    //         text = "Map is not working",
+    //         modifier = modifier
+    //        )
+    Text(
+        text = "Desktop map reached"
+        modifier = modifier
         )
-    } else {
-        androidx.compose.material3.Text(
-            text = "Map is not working",
-            modifier = modifier
-            )
     }
 }
