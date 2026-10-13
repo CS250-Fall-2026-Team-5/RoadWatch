@@ -32,7 +32,7 @@ import roadwatch.shared.generated.resources.compose_multiplatform
 @Composable
 @Preview
 fun App() {
-    varsearchTextby remember{ mutableStateOf("")}
+    var searchTextby remember{ mutableStateOf("")}
     MaterialTheme{
         //Creating basic box background
         Box( modifier = Modifier.fillMaxSize()){
