@@ -26,18 +26,23 @@ import org.jetbrains.compose.resources.painterResource
 import androidx.compose.ui.geometry.Offset
 import roadwatch.shared.generated.resources.Res
 import roadwatch.shared.generated.resources.compose_multiplatform
+private val sdsuLocation = LocationCoordinates(latitude = 32.7757, longitude = -117.0719
+                                               )
 
 @Composable
 @Preview
 fun App() {
-    LocationScreen()
-//    MaterialTheme{
-//        //Creating basic box background
-//        Box( modifier = Modifier
-//            .fillMaxSize()
-//            .background(MaterialTheme.colorScheme.background)
-//           ) {
-//            //Creating temporary placeholder map
+    MaterialTheme{
+        LocationScreen()
+    }
+}
+
+        //Creating basic box background
+        Box( modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+           ) {
+            //Creating temporary placeholder map
 //            Text(
 //                text = "Map Placeholder",
 //                modifier = Modifier
