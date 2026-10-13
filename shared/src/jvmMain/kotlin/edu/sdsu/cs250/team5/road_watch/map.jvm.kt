@@ -57,7 +57,7 @@ actual fun platformMap(
             )
         )
     } else {
-        androidx.compose.material3.Txt(
+        androidx.compose.material3.Text(
             text = "Map is not working",
             modifier = modifier
             )
