@@ -58,7 +58,7 @@ fun App() {
             Text(
                 text = "Roadwatch ui visable",
                 modifier = Modifier.align(Alignment.Center)
-                }
+                )
             //Creating barebones search box for searching through google maps
             TextField(
                 //value of search box changes to user prompt
