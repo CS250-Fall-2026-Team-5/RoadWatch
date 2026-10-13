@@ -30,23 +30,41 @@ actual fun platformMap(
     }
 
     LaunchedEffect(coordinates) {
-        lookupFinished = false
-
         mapCoordinates = coordinates ?: withContext(Dispatchers.IO) {
-            getCoordinatesFromAddressJvm(
-                "6075 Aztec Circle Dr, San Diego, CA 92182"
-            )
-                ?.firstOrNull()
-                ?.let {
-                    LocationCoordinates(
-                        latitude = it.latitude,
-                        longitude = it.longitude
-                    )
-                }
-        }
+        getCoordinatesFromAddressJvm(
+            "6075 Aztec Circle Dr, San Diego, CA 92182"
+        )
+            ?.firstOrNull()
+            ?.let {
+                LocationCoordinates(
+                    latitude = it.latitude,
+                    longitude = it.longitude
+                )
+            }
+    } ?: LocationCoordinates(
+        latitude = 32.7757,
+        longitude = -117.0719
+    )
+}
+    
 
-        lookupFinished = true
-    }
+        // lookupFinished = false
+
+        // mapCoordinates = coordinates ?: withContext(Dispatchers.IO) {
+        //     getCoordinatesFromAddressJvm(
+        //         "6075 Aztec Circle Dr, San Diego, CA 92182"
+        //     )
+        //         ?.firstOrNull()
+        //         ?.let {
+        //             LocationCoordinates(
+        //                 latitude = it.latitude,
+        //                 longitude = it.longitude
+        //             )
+        //         }
+        // }
+
+        // lookupFinished = true
+    //}
 
     val location = mapCoordinates
 
