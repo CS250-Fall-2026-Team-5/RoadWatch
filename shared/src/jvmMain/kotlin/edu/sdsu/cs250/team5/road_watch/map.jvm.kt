@@ -1,6 +1,7 @@
 package edu.sdsu.cs250.team5.road_watch
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import com.swmansion.kmpmaps.core.*
@@ -20,6 +21,7 @@ actual fun platformMap(
         mutableStateOf(coordinates)
     }
 
+    //Calls Geocoder to translate dummy address into coordinates.
     LaunchedEffect(coordinates) {
         mapCoordinates = coordinates ?: withContext(Dispatchers.IO) {
             getCoordinatesFromAddressJvm(
@@ -36,7 +38,11 @@ actual fun platformMap(
     }
 
     val location = mapCoordinates
-
+    if (location == null) {
+        CircularProgressIndicator()
+        return
+    }
+    //Runs map if coordinates are found.
     if (location != null) {
         val mapLocation = Coordinates(
             latitude = location.latitude,
