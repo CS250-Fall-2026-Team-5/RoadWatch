@@ -15,10 +15,7 @@ actual fun platformMap(
     MapConfiguration.initialize(
         googleMapsApiKey = BuildKonfig.DESKTOP_API_KEY
     )
-    val location = coordinates ?: LocationCoordinates(
-        latitude = 32.7757,
-        longitude = -117.0719
-    )
+    
 
     var mapCoordinates by remember {
         mutableStateOf(coordinates)
