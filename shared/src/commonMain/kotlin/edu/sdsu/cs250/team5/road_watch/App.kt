@@ -60,7 +60,13 @@ fun App() {
            ) {
             platformMap(
                 coordinates = null,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    top = 90.dp,
+                    end = 320.dp,
+                    bottom = 130.dp
+                    )
                 )
             //Creating barebones search box for searching through google maps
             Row(
@@ -139,7 +145,8 @@ fun App() {
         if(showReportBox && isLoggedIn){
             Box(
                 modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.BottomEnd)
+                .padding(end = 10.dp, bottom = 20.dp)
                 .size(width = 300.dp, height = 300.dp)
                 .background(    
                     MaterialTheme.colorScheme.surfaceVariant
