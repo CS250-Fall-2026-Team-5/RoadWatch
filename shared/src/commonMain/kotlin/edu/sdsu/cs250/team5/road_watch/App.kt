@@ -28,7 +28,8 @@ import androidx.compose.ui.geometry.Offset
 import roadwatch.shared.generated.resources.Res
 import roadwatch.shared.generated.resources.compose_multiplatform
 import androidx.compose.ui.unit.sp
-
+import androidx.compose.foundation.layout.Row
+internet var mapSearchRequest by mutableStateOf("")
 @Composable
 @Preview
 fun App() {
@@ -50,12 +51,25 @@ fun App() {
         }
         
         //Creating basic box background main screen hud
-        Box( modifier = Modifier
+        Box(
+            
+            modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
            ) {
+            platformMap(
+                coordinates = null,
+                modifier = Modifier.fillMaxSize()
+                )
             //Creating barebones search box for searching through google maps
-            TextField(
+            Row(
+                modifier = Modifier
+                .align(Alignment.TopCenter)
+                ,fillMaxWidth()
+                .padding(start = 20.dp, top= 20.dp, end = 120.dp),
+                verticalAlignment = Alignment.CenterVertically
+                ){
+                   TextField(
                 //value of search box changes to user prompt
                 value = searchText,
                 onValueChange = {
@@ -64,10 +78,25 @@ fun App() {
                 placeholder = {
                     Text("Search maps")
                 },
-                    modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .padding(20.dp)
-                    )
+                       modifier = Modifier.weight(1f),
+                       singleLine = true
+                       )
+                   Button(
+                       onClick = {
+                           //does a search in our textfield if not blank
+                           if (searchText.isNotBlank()){
+                               mapSearchRequest = searchText.trim()
+                           }
+                       }
+                       ){
+                       Text("Search")
+                   }
+            }
+                               
+                   
+                
+          
+                   
                 //adding login variable and description variable, however can not store user description for now
         if (showLogin){
             Box(
