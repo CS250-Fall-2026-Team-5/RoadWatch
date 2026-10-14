@@ -13,7 +13,7 @@ dependencies {
     implementation(libs.kotlinx.coroutinesSwing)
 
     implementation(libs.compose.uiToolingPreview)
-    implementation("dev.datlag:kcef:2024.04.20.4")
+    implementation("dev.datlag:kcef:2025.03.23")
 }
 
 compose.desktop {
