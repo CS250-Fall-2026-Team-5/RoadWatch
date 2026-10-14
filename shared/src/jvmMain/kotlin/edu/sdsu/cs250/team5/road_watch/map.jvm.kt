@@ -20,36 +20,57 @@ actual fun platformMap(
     var mapCoordinates by remember {
         mutableStateOf(coordinates)
     }
-
-    LaunchedEffect(coordinates) {
-        mapCoordinates = coordinates ?: withContext(Dispatchers.IO) {
-            getCoordinatesFromAddressJvm(
-                "6075 Aztec Circle Dr, San Diego, CA 92182"
-            )
+//Passing in map request from app.kt and using coordinates from 
+    LaunchedEffect(coordinates, mapSearchRequest) {
+        if(mapSearchRequest.isNotBlank()) {
+            val searchedLocation = withContext(Dispatchers.IO) {
+                getCoordinatesFromAddressJvm(mapSearchRequest)
                 ?.firstOrNull()
-                ?.let {
+                ?.let{
                     LocationCoordinates(
                         latitude = it.latitude,
                         longitude = it.longitude
-                    )
+                        )
                 }
-        } ?:LocationCoordinates(
-            latitude = 32.7757,
-            longitude = -117.0719
-            )
+            }
+// update map to searched location from our map
+    if (searchedLocation != null) {
+        mapCoordinates = searchedLocation
     }
-    
-
+    else {
+        println("Creating map with map Search Request")
+    }
+        }else {
+            // start map at Aztec circle
+            mapCoordinates = coordinates ?: withContext(Dispatchers.IO){
+                getCoordinatesFromAddressJvm(
+                    "6075 Aztec Circle Dr, San Diego, CA 92182"
+                    )
+                ?.firstOrNull()
+                ?.let{
+                    LocationCoordinates(
+                        latitude = it.latitude,
+                        longitude = it.longitude
+                        )
+                }
+            } ?:LocationCoordinates(
+                latitude = 32.7757,
+                longitude = -117.0719
+                )
+        }
+    }
+    //Gets the current map location
     val location = mapCoordinates
+    //will only display if our coodinates are there
 
     if (location != null) {
         val mapLocation = Coordinates(
             latitude = location.latitude,
             longitude = location.longitude
-        )
-        println("Creating map at ${mapLocation.latitude}, ${mapLocation.longitude}")
-
-        Map(
+            )
+        //Remakes the map when our location is updated
+        key(mapLocation){
+            Map(
             modifier = modifier,
             cameraPosition = CameraPosition(
                 coordinates = mapLocation,
@@ -65,7 +86,10 @@ actual fun platformMap(
                 println("Google maps finshed loading")
             }
             
+
+        
                 
         )
     }
+}
 }
