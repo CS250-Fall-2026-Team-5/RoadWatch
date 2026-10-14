@@ -47,6 +47,7 @@ actual fun platformMap(
             latitude = location.latitude,
             longitude = location.longitude
         )
+        println("Creating map at ${mapLocation.latitude}, ${mapLocation.longitude}")
 
         Map(
             modifier = modifier,
@@ -58,8 +59,13 @@ actual fun platformMap(
                 Marker(
                     coordinates = mapLocation,
                     title = "San Diego State University"
-                )
-            )
+                    )
+                ),
+            onMapLoaded = {
+                println("Google maps finshed loading")
+            }
+            
+                
         )
     }
 }
