@@ -29,7 +29,8 @@ import roadwatch.shared.generated.resources.Res
 import roadwatch.shared.generated.resources.compose_multiplatform
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
-internet var mapSearchRequest by mutableStateOf("")
+import androidx.compose.foundatin.layout.Arrangement
+internal var mapSearchRequest by mutableStateOf("")
 @Composable
 @Preview
 fun App() {
@@ -65,8 +66,13 @@ fun App() {
             Row(
                 modifier = Modifier
                 .align(Alignment.TopCenter)
-                ,fillMaxWidth()
-                .padding(start = 20.dp, top= 20.dp, end = 120.dp),
+                .fillMaxWidth()
+                .padding(
+                    start = 20.dp, 
+                    top= 20.dp, 
+                    end = 120.dp
+                ),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
                 ){
                    TextField(
