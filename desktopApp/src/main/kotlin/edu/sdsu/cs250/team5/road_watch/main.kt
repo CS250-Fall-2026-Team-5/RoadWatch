@@ -1,6 +1,6 @@
 package edu.sdsu.cs250.team5.road_watch
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
@@ -44,7 +44,7 @@ fun main() = application {
         if (initialized) {
             App()
         } else {
-            Text("Initializing Map Engine...")
+            BasicText("Initializing Map Engine...")
         }
     }
 }
