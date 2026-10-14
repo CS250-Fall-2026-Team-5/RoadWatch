@@ -56,7 +56,9 @@ fun App() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(MaterialTheme.colorScheme.primaryContainer)
+                .background(
+                    MaterialTheme.colorScheme.primaryContainer
+                )
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -96,7 +98,9 @@ fun App() {
 
             OutlinedTextField(
                 value = description,
-                onValueChange = { description = it },
+                onValueChange = {
+                    description = it
+                },
                 label = {
                     Text("Description")
                 },
@@ -107,7 +111,9 @@ fun App() {
 
             OutlinedTextField(
                 value = latitude,
-                onValueChange = { latitude = it },
+                onValueChange = {
+                    latitude = it
+                },
                 label = {
                     Text("Latitude")
                 },
@@ -118,7 +124,9 @@ fun App() {
 
             OutlinedTextField(
                 value = longitude,
-                onValueChange = { longitude = it },
+                onValueChange = {
+                    longitude = it
+                },
                 label = {
                     Text("Longitude")
                 },

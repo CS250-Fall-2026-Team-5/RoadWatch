@@ -1,5 +1,10 @@
 Asher Plotsky: Asher-Branch
+
 Grant Phillips: grant/hazard-repository
+
+Moises Cortes: Basic Ui and Search Branch
+
+Debora Velazquez: req-8-validation branch, app’s hazard report validation and testing layer 
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
