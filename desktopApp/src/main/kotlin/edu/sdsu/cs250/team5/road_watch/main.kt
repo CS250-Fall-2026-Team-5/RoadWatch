@@ -23,7 +23,12 @@ fun main() = application {
                 KCEF.init(
                     builder = {
                         installDir(File("kcef-bundle"))
-                        release(true)
+                        download {
+                            github {
+                                release("jbr-release-17.0.12b1207.37")
+                            }
+                        }
+                        
 
                         progress {
                             onInitialized {
