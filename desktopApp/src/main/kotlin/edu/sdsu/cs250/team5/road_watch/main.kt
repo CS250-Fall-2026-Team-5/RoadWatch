@@ -23,6 +23,7 @@ fun main() = application {
                 KCEF.init(
                     builder = {
                         installDir(File("kcef-bundle"))
+                        release(true)
 
                         progress {
                             onInitialized {
