@@ -29,7 +29,7 @@ import roadwatch.shared.generated.resources.Res
 import roadwatch.shared.generated.resources.compose_multiplatform
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundatin.layout.Arrangement
+import androidx.compose.foundation.layout.Arrangement
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
 @Preview
