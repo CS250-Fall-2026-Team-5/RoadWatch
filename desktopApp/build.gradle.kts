@@ -13,11 +13,14 @@ dependencies {
     implementation(libs.kotlinx.coroutinesSwing)
 
     implementation(libs.compose.uiToolingPreview)
+    implementation("dev.datlag:kcef:2024.04.20.4")
 }
 
 compose.desktop {
     application {
         mainClass = "edu.sdsu.cs250.team5.road_watch.MainKt"
+//Allows my ui to be visabled above google maps
+jvmArgs += listOf("-Dcompose.interop.blending=true")
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
