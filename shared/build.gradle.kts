@@ -33,8 +33,8 @@ buildkonfig {
     packageName = "edu.sdsu.cs250.team5.road_watch"
     exposeObjectWithName = "BuildKonfig"
 
+    //Adds API Keys as BuildKonfig Variables.
     defaultConfigs {
-        // Enclose values in single-escaped quotes for proper string literals
         buildConfigField(STRING, "IOS_API_KEY", iosMapsKey)
         buildConfigField(STRING, "DESKTOP_API_KEY", desktopKey)
         buildConfigField(STRING, "MAPS_API_KEY", mapsKey)
@@ -46,7 +46,7 @@ kotlin {
     iosSimulatorArm64()
 
 
-
+    //Cocoapods only works on IOS
     cocoapods {
         summary = "Roadwatch"
         homepage = "https://github.com/CS250-Fall-2026-Team-5/RoadWatch"

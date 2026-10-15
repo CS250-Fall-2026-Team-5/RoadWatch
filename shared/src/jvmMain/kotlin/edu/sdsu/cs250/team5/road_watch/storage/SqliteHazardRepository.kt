@@ -14,12 +14,6 @@ import java.sql.ResultSet       // the "cursor" we read query results from
 
 /**
  * Stores and retrieves hazard reports using SQLite.
- *
- * Call [initializeDatabase] with the same database URL before using this class.
- * Each operation opens and closes its own connection.
- * JDBC operations block, so callers should run them off the UI thread.
- *
- * @param databaseUrl database location; tests can supply a temporary file.
  */
 class SqliteHazardRepository(
 
