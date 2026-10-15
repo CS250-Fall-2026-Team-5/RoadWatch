@@ -1,14 +1,3 @@
-package edu.sdsu.cs250.team5.road_watch
- Debora/req-8-validation
-
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-
-@Composable
-@Preview
-fun App() {
-    LocationScreen()
-
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
@@ -253,5 +242,4 @@ fun App() {
                 }
         }
     }
-main
 }
