@@ -1,4 +1,5 @@
 package edu.sdsu.cs250.team5.road_watch
+
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.offset
@@ -30,6 +31,7 @@ import roadwatch.shared.generated.resources.compose_multiplatform
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
+
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
 @Preview
@@ -104,7 +106,7 @@ fun App() {
                        Text("Search")
                    }
             }
-                               
+                                
                    
                 
           
@@ -244,5 +246,3 @@ fun App() {
         }
     }
 }
-                
-                    
