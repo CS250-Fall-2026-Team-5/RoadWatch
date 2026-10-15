@@ -69,16 +69,7 @@ fun App() {
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            platformMap(
-                coordinates = null,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(
-                        top = 90.dp,
-                        end = 320.dp,
-                        bottom = 130.dp
-                    )
-            )
+            LocationScreen()
             //Creating barebones search box for searching through google maps
             Row(
                 modifier = Modifier
