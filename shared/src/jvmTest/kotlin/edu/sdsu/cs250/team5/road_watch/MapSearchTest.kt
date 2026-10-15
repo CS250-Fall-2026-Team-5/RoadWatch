@@ -9,8 +9,9 @@ import kotlin.test.assertTrue
 //test to prove address look up is functional in our application, searches a given address
 //checks if said address is  avalid georaddress falls in valid latitude and longitude coordinates
 class MapSearchTest {
+  @Test
   fun knownAddressReturnValidCoordinates() = runBlocking {
-    val address = "1600 Amphitheatre Parkwat, Mountain View, CA 94043"
+    val address = "1600 Amphitheatre Parkway, Mountain View, CA 94043"
     val results = withContext(Dispatchers.IO){
       getCoordinatesFromAddressJvm(address)
     }
@@ -20,6 +21,10 @@ class MapSearchTest {
       )
     assertTrue(
       location.latitude in -90.0..90.0
+      )
+    assettrue(
+      location.longitude in -180.0..180.0,
+      "Longitude must be between -180 and 180"
       )
 
   }
