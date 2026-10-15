@@ -6,6 +6,9 @@ Moises Cortes: Basic Ui and Search Branch
 
 Debora Velazquez: req-8-validation branch, app’s hazard report validation and testing layer 
 
+In order for the app to work, you must include google maps API keys in you github secrets as well as in your local.properties file.
+For the android app to work you must have the Android plugin installed as well as the Android API 37.0 SDK in your platform settings.
+
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
 
 * [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
