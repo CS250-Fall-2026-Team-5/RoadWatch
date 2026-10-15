@@ -1,5 +1,5 @@
 package edu.sdsu.cs250.team5.road_watch
-import com.swmansion.kmpmaps.core.getCoordinatesFromAddressJvm
+import com.swamnsion.kmpmaps.core.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -22,7 +22,7 @@ class MapSearchTest {
     assertTrue(
       location.latitude in -90.0..90.0
       )
-    assettrue(
+    assertTrue(
       location.longitude in -180.0..180.0,
       "Longitude must be between -180 and 180"
       )
