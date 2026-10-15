@@ -6,7 +6,14 @@ Moises Cortes: Basic Ui and Search Branch
 
 Debora Velazquez: req-8-validation branch, app’s hazard report validation and testing layer 
 
-In order for the app to work, you must include google maps API keys in you github secrets as well as in your local.properties file.
+In order for the app to work, you must include google maps API keys in you github secrets as well as in your local.properties file.  
+Add them to the local.properties in this format: 
+
+MAPS_API_KEY = (Your Android Maps API Key)  
+IOS_MAPS_API_KEY = (Your IOS Maps API Key)  
+DESKTOP_API_KEY = (Your Desktop API Key)  
+You can create those API Keys on Google Cloud Console.
+
 For the android app to work you must have the Android plugin installed as well as the Android API 37.0 SDK in your platform settings.
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
