@@ -16,8 +16,7 @@ import java.sql.ResultSet
  * @param databaseUrl database location; tests can supply a temporary file.
  */
 class SqliteHazardRepository(
-    private val databaseUrl: String = "jdbc:sqlite:roadwatch.db"
-) : HazardRepository {
+    private val databaseUrl: String = "jdbc:sqlite:roadwatch.db") : HazardRepository {
 
     // Fixed table name used by the repository's SQL statements.
     private val tableName = "reports"
