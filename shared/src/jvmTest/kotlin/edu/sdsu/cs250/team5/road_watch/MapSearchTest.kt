@@ -14,12 +14,13 @@ class MapSearchTest {
     val results = withContext(Dispatchers.IO){
       getCoordinatesFromAddressJvm(address)
     }
-    valo location = assertNotNull(
+    val location = assertNotNull(
       results?.firstOrNull(),
       "expect geocoder to return coordinates for a known address"
       )
     assertTrue(
       location.latitude in -90.0..90.0
       )
-      
+
+  }
       
