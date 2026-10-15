@@ -10,6 +10,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
 
 //Calls Map class from required device.
 @Composable
@@ -35,7 +37,9 @@ fun LocationScreen() {
     if (isJvm) {
         platformMap(
             coordinates = null,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 90.dp, end = 320.dp, bottom = 130.dp)
         )
     }
     else {

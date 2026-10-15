@@ -55,12 +55,13 @@ fun App() {
 
         // (REQ-1): the backend store, remembered so reports survive recomposition
         val repo = remember {
-            InMemoryHazardRepository()
+            HazardRepositoryProvider.current // use whatever the platform set
+
         }
 
         //  (REQ-1): visible count of stored reports, so we can prove it saved
         var reportCount by remember {
-            mutableStateOf(0)
+            mutableStateOf(repo.getAllReports().size)   // start the counter from what's already saved
         }
 
         //Creating basic box background main screen hud
