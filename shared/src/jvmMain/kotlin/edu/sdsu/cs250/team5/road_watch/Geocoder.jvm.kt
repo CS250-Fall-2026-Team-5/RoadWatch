@@ -6,6 +6,7 @@ import dev.jordond.compass.geocoder.Geocoder
 suspend fun getCoordinatesFromAddressJvm(addressString: String): List<Coordinates>? {
     val geocoder = Geocoder(apiKey = BuildKonfig.DESKTOP_API_KEY)
 
+    //Calls the server for web access to find coordinates.
     return try {
         val result = geocoder.forward(addressString)
 

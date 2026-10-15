@@ -6,6 +6,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 
 class LocationService {
+    //Accesses location provided by geolocator
     private val geolocator: Geolocator? = provideGeolocator()
 
     suspend fun fetchCurrentLocation(): LocationCoordinates? {

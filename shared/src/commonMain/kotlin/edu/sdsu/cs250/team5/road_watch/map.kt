@@ -11,6 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 
+//Calls Map class from required device.
 @Composable
 expect fun platformMap(
     coordinates: LocationCoordinates?,
@@ -24,11 +25,13 @@ fun LocationScreen() {
     val platform = remember { getPlatform() }
     val isJvm = platform.name.startsWith("Java ")
 
+    //If not JVM calls for device location
     LaunchedEffect(Unit) {
         if (!isJvm) {
             controller.loadLocation()
         }
     }
+    //If it is running on JVM, it first loads a map with no pointer.
     if (isJvm) {
         platformMap(
             coordinates = null,
@@ -44,7 +47,7 @@ fun LocationScreen() {
             currentCoordinates == null -> {
                 CircularProgressIndicator()
             }
-
+            //runs map if no error and coordinates exist.
             else -> {
                 platformMap(
                     coordinates = currentCoordinates,
