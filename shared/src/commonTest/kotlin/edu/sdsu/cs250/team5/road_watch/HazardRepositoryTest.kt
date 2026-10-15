@@ -9,7 +9,6 @@ import kotlin.test.assertTrue
 
 class HazardRepositoryTest {
 
-    // REQ-1 and REQ-2: A report is stored and can be retrieved.
     @Test
     fun submittedReportIsStoredAndRetrievable() {
         val repo = InMemoryHazardRepository()
@@ -28,72 +27,87 @@ class HazardRepositoryTest {
 
         assertNotNull(fetched)
         assertEquals(HazardType.POTHOLE, fetched.type)
-        assertEquals("Deep pothole in the right lane", fetched.description)
+        assertEquals(
+            "Deep pothole in the right lane",
+            fetched.description
+        )
         assertEquals(32.7757, fetched.lat)
         assertEquals(-117.0719, fetched.lng)
     }
 
-    // REQ-2 and REQ-3: Reports are returned in submission order.
     @Test
     fun reportsAreReturnedInSubmissionOrder() {
         val repo = InMemoryHazardRepository()
 
         repo.addReport(
-            HazardType.POTHOLE,
-            "first report",
-            32.0,
-            -117.0
+            type = HazardType.POTHOLE,
+            description = "first report",
+            lat = 32.0,
+            lng = -117.0
         )
 
         repo.addReport(
-            HazardType.BROKEN_LIGHT,
-            "second report",
-            32.1,
-            -117.1
+            type = HazardType.BROKEN_LIGHT,
+            description = "second report",
+            lat = 32.1,
+            lng = -117.1
         )
 
-        val all = repo.getAllReports()
+        val allReports = repo.getAllReports()
 
-        assertEquals(2, all.size)
-        assertEquals("first report", all[0].description)
-        assertEquals("second report", all[1].description)
+        assertEquals(2, allReports.size)
+        assertEquals("first report", allReports[0].description)
+        assertEquals("second report", allReports[1].description)
     }
 
-    // REQ-8: Blank descriptions are rejected and not stored.
     @Test
     fun blankDescriptionIsRejected() {
         val repo = InMemoryHazardRepository()
 
         assertFailsWith<IllegalArgumentException> {
             repo.addReport(
-                HazardType.OTHER,
-                "   ",
-                32.0,
-                -117.0
+                type = HazardType.OTHER,
+                description = "   ",
+                lat = 32.0,
+                lng = -117.0
             )
         }
 
         assertEquals(0, repo.getAllReports().size)
     }
 
-    // REQ-8: Out-of-range coordinates are rejected and not stored.
     @Test
-    fun outOfRangeCoordinatesAreRejected() {
+    fun outOfRangeLatitudeIsRejected() {
         val repo = InMemoryHazardRepository()
 
         assertFailsWith<IllegalArgumentException> {
             repo.addReport(
-                HazardType.POTHOLE,
-                "bad latitude",
-                200.0,
-                -117.0
+                type = HazardType.POTHOLE,
+                description = "Invalid latitude",
+                lat = 200.0,
+                lng = -117.0
             )
         }
 
         assertEquals(0, repo.getAllReports().size)
     }
 
-    // REQ-8: Descriptions over 500 characters are rejected.
+    @Test
+    fun outOfRangeLongitudeIsRejected() {
+        val repo = InMemoryHazardRepository()
+
+        assertFailsWith<IllegalArgumentException> {
+            repo.addReport(
+                type = HazardType.POTHOLE,
+                description = "Invalid longitude",
+                lat = 32.0,
+                lng = 200.0
+            )
+        }
+
+        assertEquals(0, repo.getAllReports().size)
+    }
+
     @Test
     fun descriptionOver500CharactersIsRejected() {
         val repo = InMemoryHazardRepository()
@@ -111,7 +125,20 @@ class HazardRepositoryTest {
         assertEquals(0, repo.getAllReports().size)
     }
 
-    // REQ-8: Unsupported image file types are rejected.
+    @Test
+    fun descriptionWithExactly500CharactersIsAccepted() {
+        val repo = InMemoryHazardRepository()
+
+        val saved = repo.addReport(
+            type = HazardType.OTHER,
+            description = "a".repeat(500),
+            lat = 32.0,
+            lng = -117.0
+        )
+
+        assertEquals(500, saved.description.length)
+    }
+
     @Test
     fun unsupportedImageTypeIsRejected() {
         val repo = InMemoryHazardRepository()
@@ -129,7 +156,6 @@ class HazardRepositoryTest {
         assertEquals(0, repo.getAllReports().size)
     }
 
-    // REQ-4: Supported image file types are stored.
     @Test
     fun supportedImageTypeIsStored() {
         val repo = InMemoryHazardRepository()
@@ -145,7 +171,21 @@ class HazardRepositoryTest {
         assertEquals("hazard.jpg", saved.image)
     }
 
-    // Safety: An unknown report ID returns null.
+    @Test
+    fun uppercaseImageExtensionIsAccepted() {
+        val repo = InMemoryHazardRepository()
+
+        val saved = repo.addReport(
+            type = HazardType.POTHOLE,
+            description = "Image test",
+            lat = 32.0,
+            lng = -117.0,
+            image = "hazard.JPG"
+        )
+
+        assertEquals("hazard.JPG", saved.image)
+    }
+
     @Test
     fun unknownIdReturnsNull() {
         val repo = InMemoryHazardRepository()
