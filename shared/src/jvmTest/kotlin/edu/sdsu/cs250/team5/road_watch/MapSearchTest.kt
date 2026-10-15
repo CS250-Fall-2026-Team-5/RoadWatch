@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
+//ai used to create test case, minimal changes to correct
 //test to prove address look up is functional in our application, searches a given address
 //checks if said address is  avalid georaddress falls in valid latitude and longitude coordinates
 class MapSearchTest {
