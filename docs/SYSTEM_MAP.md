@@ -61,7 +61,7 @@ Include any of these that exist:
 
 **Insert diagram image here.**
 
-![][image1]
+https://github.com/CS250-Fall-2026-Team-5/RoadWatch/blob/leo-f/docs/architecture_diagram.png
 
 ## **Part 3: Trace the click**
 
