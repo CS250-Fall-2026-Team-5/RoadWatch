@@ -111,6 +111,11 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 
    ***Mismatches:** (1) The handoff UML shows a separate Interests table, but the code stores interests as a comma-separated string in profiles. (2) The UML never mentions the image storage service.*
 
+## **Part 5: Candidate Requirements
+| ID | Candidate Requirement | Type | Source | Status | Acceptance Criterion |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| CR-1 | The system shall reject image files that aren't a jpg, jpeg, or a png. | Non-functional | ReportValidator.kt -> validate() | Unconfirmed | Image that isn't a jpg, jpeg, or png is rejected and returns an error. |
+
 ## **Grading checklist**
 
 - [x]  ~~Purpose sentence is specific, not generic~~  
