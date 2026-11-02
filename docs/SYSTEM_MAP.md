@@ -115,6 +115,8 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 | ID | Candidate Requirement | Type | Source | Status | Acceptance Criterion |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | CR-1 | The system shall reject image files that aren't a jpg, jpeg, or a png. | Non-functional | ReportValidator.kt -> validate() | Unconfirmed | Image that isn't a jpg, jpeg, or png is rejected and returns an error. |
+|CR-2 | The system shall store a hazard report when a user submits a hazard description with at least 3 characters. | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Confirmed | Description with 3 or more characters is sumbitted leading to the store hazard count to increase by 1. |
+|Cr-3| The system shall display the hazard report form when a logged-in user releases the hazard pin. | Functional | App.kt -> detectDragGestures() -> onDragEnd() | Confirmed | Logged-in user drags and releases the pin and the Hazard Report form appears. | 
 
 ## **Grading checklist**
 
