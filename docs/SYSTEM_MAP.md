@@ -115,8 +115,10 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 | ID | Candidate Requirement | Type | Source | Status | Acceptance Criterion |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | CR-1 | The system shall reject image files that aren't a jpg, jpeg, or a png. | Non-functional | ReportValidator.kt -> validate() | Unconfirmed | Image that isn't a jpg, jpeg, or png is rejected and returns an error. |
-|CR-2 | The system shall store a hazard report when a user submits a hazard description with at least 3 characters. | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Confirmed | Description with 3 or more characters is sumbitted leading to the store hazard count to increase by 1. |
-|Cr-3| The system shall display the hazard report form when a logged-in user releases the hazard pin. | Functional | App.kt -> detectDragGestures() -> onDragEnd() | Confirmed | Logged-in user drags and releases the pin and the Hazard Report form appears. | 
+| CR-2 | The system shall store a hazard report when a user submits a hazard description with at least 3 characters. | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Confirmed | Description with 3 or more characters is sumbitted leading to the store hazard count to increase by 1. |
+| CR-3 | The system shall display the hazard report form when a logged-in user releases the hazard pin. | Functional | App.kt -> detectDragGestures() -> onDragEnd() | Confirmed | Logged-in user drags and releases the pin and the Hazard Report form appears. |
+| CR-4 | The system shall submit the latitude and longitude of the geographical position selected by the pin feature | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Suspected Bug | The latitude and longitude numbers of 32.776, -117.071 are chosen by the pin feature, once submitted, the Hazard Report contains the location as 32.776, -117.071. |
+| CR-5 | The system shall return the items in the database ordered by ID number | Functional | SqliteHazardRepository -> getAllReports() | Unconfirmed | When getting a list of the Hazard Reports from the database, they're organized by the lowest ID coming first and the highest ID coming last. |
 
 ## **Grading checklist**
 
