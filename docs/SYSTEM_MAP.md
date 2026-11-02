@@ -125,7 +125,7 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 | ID / Requirement | Kind | Input | Expected Output | Predicted Result Today |
 | :---- | :---- | :---- | :---- | :---- |
 | TC-1 CR-1 | Negative | Image that ends in .php | Error, .php is not a supported file type | Fail: Php files are not supported, also images are currently not included in Hazard Report submissions. |
-| TC-3 CR-3 | Positive | Logged-in user drags the pin and releases it | Hazard Report form appears | Pass |
+| TC-2 CR-3 | Positive | Logged-in user drags the pin and releases it | Hazard Report form appears | Pass |
 
 ## **Grading checklist**
 
