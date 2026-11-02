@@ -120,6 +120,12 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 | CR-4 | The system shall submit the latitude and longitude of the geographical position selected by the pin feature | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Suspected Bug | The latitude and longitude numbers of 32.776, -117.071 are chosen by the pin feature, once submitted, the Hazard Report contains the location as 32.776, -117.071. |
 | CR-5 | The system shall return the items in the database ordered by ID number | Functional | SqliteHazardRepository -> getAllReports() | Unconfirmed | When getting a list of the Hazard Reports from the database, they're organized by the lowest ID coming first and the highest ID coming last. |
 
+## **Part 6: Test Cases
+
+| ID / Requirement | Kind | Input | Expected Output | Predicted Result Today |
+| :---- | :---- | :---- | :---- | :---- |
+| TC-1 CR-1 | Boundary | Image that ends in .jpg | No error, image is stored as part of the Hazard Report | Fail: Although the image formats are filtered, images are currently not included in Hazard Report submissions. |
+
 ## **Grading checklist**
 
 - [x]  ~~Purpose sentence is specific, not generic~~  
