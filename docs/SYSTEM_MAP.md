@@ -124,7 +124,7 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 
 | ID / Requirement | Kind | Input | Expected Output | Predicted Result Today |
 | :---- | :---- | :---- | :---- | :---- |
-| TC-1 CR-1 | Negative | Image that ends in .jpg | No error, image is stored as part of the Hazard Report | Fail: Although the image formats are filtered, images are currently not included in Hazard Report submissions. |
+| TC-1 CR-1 | Negative | Image that ends in .php | Error, .php is not a supported file type | Fail: Php files are not supported, also images are currently not included in Hazard Report submissions. |
 
 ## **Grading checklist**
 
