@@ -115,6 +115,7 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 | ID | Candidate Requirement | Type | Source | Status | Acceptance Criterion |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | CR-1 | The system shall reject image files that aren't a jpg, jpeg, or a png. | Non-functional | ReportValidator.kt -> validate() | Unconfirmed | Image that isn't a jpg, jpeg, or png is rejected and returns an error. |
+| CR-4 | The system shall submit the latitude and longitude of the geographical position selected by the pin feature | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Suspected Bug | The latitude and longitude numbers of 32.776, -117.071 are chosen by the pin feature, once submitted, the Hazard Report contains the location as 32.776, -117.071. |
 
 ## **Grading checklist**
 
