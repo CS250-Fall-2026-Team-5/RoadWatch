@@ -111,7 +111,7 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 
    ***Mismatches:** (1) The handoff UML shows a separate Interests table, but the code stores interests as a comma-separated string in profiles. (2) The UML never mentions the image storage service.*
 
-## **Part 5: Candidate Requirements
+## **Part 5: Candidate Requirements**
 | ID | Candidate Requirement | Type | Source | Status | Acceptance Criterion |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | CR-1 | The system shall reject image files that aren't a jpg, jpeg, or a png. | Non-functional | ReportValidator.kt -> validate() | Unconfirmed | Image that isn't a jpg, jpeg, or png is rejected and returns an error. |
@@ -120,12 +120,13 @@ Open the handoff UML and compare it to your diagram. Circle every mismatch on yo
 | CR-4 | The system shall submit the latitude and longitude of the geographical position selected by the pin feature | Functional | App.kt -> Submit Report onClick() -> repo.addReport() | Suspected Bug | The latitude and longitude numbers of 32.776, -117.071 are chosen by the pin feature, once submitted, the Hazard Report contains the location as 32.776, -117.071. |
 | CR-5 | The system shall return the items in the database ordered by ID number | Functional | SqliteHazardRepository -> getAllReports() | Unconfirmed | When getting a list of the Hazard Reports from the database, they're organized by the lowest ID coming first and the highest ID coming last. |
 
-## **Part 6: Test Cases
+## **Part 6: Test Cases**
 
 | ID / Requirement | Kind | Input | Expected Output | Predicted Result Today |
 | :---- | :---- | :---- | :---- | :---- |
 | TC-1 CR-1 | Negative | Image that ends in .php | Error, .php is not a supported file type | Fail: Php files are not supported, also images are currently not included in Hazard Report submissions. |
 | TC-2 CR-3 | Positive | Logged-in user drags the pin and releases it | Hazard Report form appears | Pass |
+| TC-3 CR-2 | Boundary | Hazard description: "see" | Description is accepted as valid, allowing the report to be submitted | Pass |
 
 ## **Grading checklist**
 
