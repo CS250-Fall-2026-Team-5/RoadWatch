@@ -1,14 +1,14 @@
-# Testable Requirements: [Project Name]
+# Testable Requirements: RoadWatch
 
-**Team number:** [XX]
-**Inherited from:** Team [XX]
+**Team number:** 6
+**Inherited from:** Team 5
 
 ## Who Owns What
 
 | Area of the system | Owner | ID prefix |
 |---|---|---|
 | [example: Accounts and login] | [name] | [initials, like MG] |
-| | | |
+| Hazard reporting/Validation | Leo | LF |
 | | | |
 | | | |
 
@@ -23,27 +23,29 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Hazard reporting/Validation (Leo Freije)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| G-XX-01 | | |
+| G-LF-01 | RoadWatch user | Users need to submit valid hazard reports with enough information for road hazards to be recorded accurately and be useful to other road users.|
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| REQ-XX-01 | | | |
-| REQ-XX-02 | | | |
-| REQ-XX-03 | | | |
+| REQ-LF-01 |The system shall reject a hazard report when its attached image filename does not end in .jpg, .jpeg, or .png.|Suspected Bug|CR-1 (Unconfirmed): The system shall reject image files that aren't a jpg, jpeg, or a png.|
+| REQ-LF-02 |The system shall reject descriptions containing fewer than 3 characters.|Suspected Bug|CR-2 (Confirmed): The system shall store a hazard report when a user submits a hazard description with at least 3 characters.|
+| REQ-LF-03 |The system shall reject an empty or whitespace only hazard report description.|Confirmed|New|
+| REQ-LF-04 |The system shall accept a valid hazard report without an attached image.|Confirmed|New|
+| REQ-LF-05 |The system shall reject descriptions containing more than 500 characters.|Suspected Bug|New|
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| NFR-XX-01 | | | |
+| NFR-LF-01 |When a hazard report is rejected, a message will be displayed to the user that identifies the corresponding validation error.|Suspected Bug|New|
 
 ### Example of a Good Rewrite
 
@@ -75,6 +77,7 @@ RULES
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
 | | | | |
+
 
 ---
 
