@@ -45,4 +45,63 @@ class SqliteHazardRepositoryTest {
             Files.deleteIfExists(databaseFile)
         }
     }
+    @Test
+    fun storedReportsAreReturnedInAscendingIdOrder() {
+        val databaseFile = Files.createTempFile("roadwatch-order-test-", ".db")
+        val databaseUrl = "jdbc:sqlite:${databaseFile.toAbsolutePath()}"
+
+        try {
+            initializeDatabase(databaseUrl)
+            val repository = SqliteHazardRepository(databaseUrl)
+
+            val first = repository.addReport(
+                type = HazardType.POTHOLE,
+                description = "First hazard",
+                lat = 32.7757,
+                lng = -117.0719,
+                image = null
+            )
+
+            val second = repository.addReport(
+                type = HazardType.OTHER,
+                description = "Second hazard",
+                lat = 32.7758,
+                lng = -117.0720,
+                image = null
+            )
+
+            val third = repository.addReport(
+                type = HazardType.POTHOLE,
+                description = "Third hazard",
+                lat = 32.7759,
+                lng = -117.0721,
+                image = null
+            )
+
+            val reports = repository.getAllReports()
+
+            assertEquals(
+                listOf(first.id, second.id, third.id),
+                reports.map { it.id }
+            )
+        } finally {
+            Files.deleteIfExists(databaseFile)
+        }
+    }
+    @Test
+    fun emptyDatabaseReturnsNoReports() {
+        val databaseFile = Files.createTempFile("roadwatch-empty-test-", ".db")
+        val databaseUrl = "jdbc:sqlite:${databaseFile.toAbsolutePath()}"
+
+        try {
+            initializeDatabase(databaseUrl)
+            val repository = SqliteHazardRepository(databaseUrl)
+
+            val reports = repository.getAllReports()
+
+            assertEquals(0, reports.size)
+        } finally {
+            Files.deleteIfExists(databaseFile)
+        }
+    }
 }

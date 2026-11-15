@@ -87,27 +87,27 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Hazard Storage and Display (Kolina Katoanga)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-KK-01 | Road Users | Road Users need to know how many hazardreports have been stored |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-KK-01 | The system shall return stored hazard reports in ascending ID order | Confirmed | CR-5 |
+| REQ-KK-02 | The system shall initialize the displayed hazard count using the number of reports already stored in the database. | Confirmed| New |
+| REQ-KK-03 | The system shall update the displayed hazard count after a new hazard report is successfully stored. | Confirmed | New |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-KK-01 | The displayed hazard count should reflect the number of stored hazard reports. | Confirmed | New |
 
 ---
 
