@@ -8,8 +8,10 @@
 | Area of the system | Owner | ID prefix |
 |---|---|---|
 | [example: Accounts and login] | [name] | [initials, like MG] |
-| Hazard reporting/Validation | Leo | LF |
 | | | |
+| Map, Pin and Location |Yomna F | YF |
+| Hazard reporting/Validation | Leo | LF |
+| Search Query & Login | Jordan B | JB |
 | | | |
 
 <!--
@@ -56,73 +58,80 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Map, Pin and Location (Yomna F)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-YF-01 | Driver who reports a road hazard | When I report a hazard, it is saved at the place where I dropped the pin, so other drivers can avoid that exact spot. |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-YF-01 | When a logged-in user releases the pin after dragging it, the system shows the Hazard Report form (title "Hazard Report", a description field and a Submit Report button). | Confirmed | CR-3 (Confirmed): The system shall display the hazard report form when a logged-in user releases the hazard pin. |
+| REQ-YF-02 | When a logged-in user submits the Hazard Report form, the system stores the latitude and longitude of the point where the pin was released, within 0.001 degrees. It does not store the fixed default 32.7757, -117.0719 for a pin dropped somewhere else. | Suspected bug | CR-4 (Suspected Bug): The system shall submit the latitude and longitude of the geographical position selected by the pin feature. |
+| REQ-YF-03 | The system shall reject a report whose latitude is outside -90 to 90 or whose longitude is outside -180 to 180 (both limits are valid values), with the error "Latitude must be between -90 and 90" or "Longitude must be between -180 and 180." | Confirmed | New |
+| REQ-YF-04 | After the user releases the pin on the map, the pin stays visible on the map at the point where it was released. | Suspected bug | New |
+| REQ-YF-05 | The system shall show the Hazard Report form only when the pin was released on the map, not when it was released inside its starting box (the gray square at the bottom left). | Suspected bug | New |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-YF-01 | The map shows its tiles within 5 seconds of the app window opening, on a normal Wi-Fi connection.|	Confirmed | New |
+
+---
 
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Hazard Storage and Display (Kolina Katoanga)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-KK-01 | Road Users | Road Users need to know how many hazardreports have been stored |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-KK-01 | The system shall return stored hazard reports in ascending ID order | Confirmed | CR-5 |
+| REQ-KK-02 | The system shall initialize the displayed hazard count using the number of reports already stored in the database. | Confirmed| New |
+| REQ-KK-03 | The system shall update the displayed hazard count after a new hazard report is successfully stored. | Confirmed | New |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-KK-01 | The displayed hazard count should reflect the number of stored hazard reports. | Confirmed | New |
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Search Query & Login (Jordan Baugh)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-JB-01 | Roadwatch User | Searching a location should be quick and show the correct searched location |
+| G-JB-02 | Developer | Users should have the ability to create an account & log in securely |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-JB-01 | The system shall update the map to show the correct location by name, address, or by latitude and longitude coordinates when searched | Suspected Bug | New |
+| REQ-JB-02 | The system shall update the user to be logged-in if their username and password match values present in the database | Suspected Bug | New |
+| REQ-JB-03 | The system shall allow a user to register if their chosen username is not present in the database | Suspected Bug | New |
+| REQ-JB-04 | The system shall allow a user to register if their chosen username is greater than 3 characters | Suspected Bug | New |
+| REQ-JB-05 | The system shall allow a user to register if their chosen password is within 8 to 20 characters, contains a capital letter, a number, and a special character | Suspected Bug | New |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-JR-01 | The search feature should take less than 3 seconds to return a result | Suspected Bug | New |
