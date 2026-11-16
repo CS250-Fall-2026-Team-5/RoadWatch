@@ -70,7 +70,7 @@
 
 **Severity:** Critical
 
-**V or V:** Validation
+**V or V:** Verification
 
 **GitHub Issue:** 93
 
@@ -107,7 +107,7 @@
 
 **Severity:** Critical
 
-**V or V:** Validation
+**V or V:** Verification
 
 **GitHub Issue:** 94
 
@@ -144,7 +144,7 @@
 
 **Severity:** Critical
 
-**V or V:** Validation
+**V or V:** Verification
 
 **GitHub Issue:** 95
 
