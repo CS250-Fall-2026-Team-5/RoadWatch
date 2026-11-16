@@ -116,6 +116,7 @@ RULES
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
+|---|---|---|
 | G-JB-01 | Roadwatch User | Searching a location should be quick and show the correct searched location |
 | G-JB-02 | Developer | Users should have the ability to create an account & log in securely |
 
