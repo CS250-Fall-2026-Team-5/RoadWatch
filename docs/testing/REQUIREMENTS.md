@@ -11,7 +11,7 @@
 | | | |
 | Map, Pin and Location |Yomna F | YF |
 | Hazard reporting/Validation | Leo | LF |
-| | | |
+| Search Query & Login | Jordan B | JB |
 | | | |
 
 <!--
@@ -111,24 +111,26 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Search Query & Login (Jordan Baugh)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
-|---|---|---|
-| | | |
+| G-JB-01 | Roadwatch User | Searching a location should be quick and show the correct searched location |
+| G-JB-02 | Developer | Users should have the ability to create an account & log in securely |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-JB-01 | The system shall update the map to show the correct location by name, address, or by latitude and longitude coordinates when searched | Suspected Bug | New |
+| REQ-JB-02 | The system shall update the user to be logged-in if their username and password match values present in the database | Suspected Bug | New |
+| REQ-JB-03 | The system shall allow a user to register if their chosen username is not present in the database | Suspected Bug | New |
+| REQ-JB-04 | The system shall allow a user to register if their chosen username is greater than 3 characters | Suspected Bug | New |
+| REQ-JB-05 | The system shall allow a user to register if their chosen password is within 8 to 20 characters, contains a capital letter, a number, and a special character | Suspected Bug | New |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-JR-01 | The search feature should take less than 3 seconds to return a result | Suspected Bug | New |
