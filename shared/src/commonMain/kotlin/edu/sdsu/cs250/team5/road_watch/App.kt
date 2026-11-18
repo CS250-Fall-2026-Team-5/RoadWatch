@@ -52,6 +52,10 @@ fun App() {
         var hazardDescription by remember {
             mutableStateOf("")
         }
+        //Sets current position of pin on home page
+        var pinOffset by remember {
+            mutableStateOf(Offset.Zero)
+        }
 
         // (REQ-1): the backend store, remembered so reports survive recomposition
         val repo = remember {
@@ -190,6 +194,7 @@ fun App() {
                                     reportCount = repo.getAllReports().size  // refresh the visible count
                                     showReportBox = false
                                     hazardDescription = ""
+                                    pinOffset = Offset.Zero // put the pin back in its box for the next report
                                 } catch (e: IllegalArgumentException) {
                                     // validation failed (blank description / bad coords) — keep box open
                                 }
@@ -215,10 +220,6 @@ fun App() {
                 Text("Login")
             }
 
-            //Sets current position of pin on home page
-            var pinOffset by remember {
-                mutableStateOf(Offset.Zero)
-            }
             //Implementing box to keep pin inside box itself is in background
             Box(
                 modifier = Modifier
