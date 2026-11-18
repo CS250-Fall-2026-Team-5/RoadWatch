@@ -19,8 +19,15 @@ dependencies {
 compose.desktop {
     application {
         mainClass = "edu.sdsu.cs250.team5.road_watch.MainKt"
-//Allows my ui to be visabled above google maps
-jvmArgs += listOf("-Dcompose.interop.blending=true")
+        //Allows my ui to be visabled above google maps
+        jvmArgs += listOf("-Dcompose.interop.blending=true")
+        // KCEF needs access to internal AWT classes, otherwise the desktop app crashes on macOS (#66)
+        jvmArgs += listOf(
+            "--add-opens", "java.desktop/sun.awt=ALL-UNNAMED",
+            "--add-opens", "java.desktop/java.awt.peer=ALL-UNNAMED",
+            "--add-opens", "java.desktop/sun.lwawt=ALL-UNNAMED",
+            "--add-opens", "java.desktop/sun.lwawt.macosx=ALL-UNNAMED"
+        )
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
