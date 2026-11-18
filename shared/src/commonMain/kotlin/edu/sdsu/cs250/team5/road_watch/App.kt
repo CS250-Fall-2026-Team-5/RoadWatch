@@ -246,7 +246,7 @@ fun App() {
                                     pinOffset += dragAmount
                                 },
                                 onDragEnd = {
-                                    if(isLoggedIn) {
+                                    if (isLoggedIn && PinPlacement.isOutsideStartBox(pinOffset.x, pinOffset.y, 50.dp.toPx())) {
                                         showReportBox = true
                                     }
                                 }
