@@ -14,7 +14,7 @@
 
 **Traces to:** REQ-LF-01
 
-**Test type:** Negative
+**Test type:** Negative, Security
 
 **Preconditions:** The user is logged in by pressing the log in button, and the map is displayed.
 
