@@ -130,4 +130,5 @@ class SqliteHazardRepositoryTest {
             Files.deleteIfExists(databaseFile)
         }
     }
+    Add image persistence test
 }
