@@ -45,6 +45,7 @@ class SqliteHazardRepositoryTest {
             Files.deleteIfExists(databaseFile)
         }
     }
+
     @Test
     fun storedReportsAreReturnedInAscendingIdOrder() {
         val databaseFile = Files.createTempFile("roadwatch-order-test-", ".db")
@@ -88,6 +89,7 @@ class SqliteHazardRepositoryTest {
             Files.deleteIfExists(databaseFile)
         }
     }
+
     @Test
     fun emptyDatabaseReturnsNoReports() {
         val databaseFile = Files.createTempFile("roadwatch-empty-test-", ".db")
@@ -103,7 +105,9 @@ class SqliteHazardRepositoryTest {
         } finally {
             Files.deleteIfExists(databaseFile)
         }
-        @Test
+    }
+
+    @Test
     fun storedImageIsRetrievedUnchanged() {
         val databaseFile = Files.createTempFile("roadwatch-test-", ".db")
         val databaseUrl = "jdbc:sqlite:${databaseFile.toAbsolutePath()}"
