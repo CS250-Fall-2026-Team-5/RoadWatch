@@ -103,7 +103,6 @@ class SqliteHazardRepositoryTest {
         } finally {
             Files.deleteIfExists(databaseFile)
         }
-    }
         @Test
     fun storedImageIsRetrievedUnchanged() {
         val databaseFile = Files.createTempFile("roadwatch-test-", ".db")
