@@ -2,6 +2,7 @@ package edu.sdsu.cs250.team5.road_watch
 
 object ReportValidator {
     const val MAX_DESCRIPTION_LENGTH = 500
+    const val MIN_DESCRIPTION_LENGTH = 3
 
     private val supportedImageExtensions =
         setOf(".jpg", ".jpeg", ".png")
@@ -16,6 +17,10 @@ object ReportValidator {
 
         if (cleanedDescription.isBlank()) {
             return "Description must not be blank"
+        }
+
+        if(cleanedDescription.length < MIN_DESCRIPTION_LENGTH) {
+            return "Description must be at least 3 characters"
         }
 
         if (cleanedDescription.length > MAX_DESCRIPTION_LENGTH) {
