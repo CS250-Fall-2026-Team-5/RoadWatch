@@ -16,7 +16,7 @@ Code bug: There was no code at all to input or check if a username was within th
 ## Bug 2: Issue #94
 
 Issue: https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/94
-PR: [link](/https://github.com/CS250-Fall-2026-Team-5/RoadWatch/pull/115/)
+PR: [link](/https://github.com/CS250-Fall-2026-Team-5/RoadWatch/pull/114/)
 
 Before:
 ![before](/docs/PR4/screenshots/jordan_baugh_issue94_before.png)
