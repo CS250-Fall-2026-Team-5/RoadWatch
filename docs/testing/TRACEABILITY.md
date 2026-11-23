@@ -1,7 +1,7 @@
 # Traceability Matrix
 
 **Team number:** Group 6
-**Filled in by:** Jordan Baugh, [ADD YOUR NAME TOO IF YOU WORKED ON THIS]
+**Filled in by:** Jordan Baugh, Leo Freije
 
 Fill this in **after** everyone's work is merged. One row per requirement.
 
@@ -54,13 +54,13 @@ Put a Test ID next to each type. Team minimum: all 7.
 
 | Test type | Test ID |
 |---|---|
-| Unit | |
-| Integration | |
-| System (E2E) | |
-| Acceptance | |
-| Boundary Value | |
-| Negative | |
-| Security | |
+| Unit | KK-01 |
+| Integration | JB-01 |
+| System (E2E) | YF-01 |
+| Acceptance | LF-04 |
+| Boundary Value | LF-02 |
+| Negative | YF-04 |
+| Security | LF-01 |
 
 ## Validation Findings
 
@@ -68,26 +68,24 @@ A Validation finding means the system does what the requirement says, but the re
 
 | Requirement ID | Goal it fails | Why | Issue # |
 |---|---|---|---|
-| | | | |
+| REQ-YF-05 | The system shall show the Hazard Report form only when the pin was released on the map, not when it was released inside its starting box. | The Hazard Report form should open only when the pin is released on the map, but it also opens when the pin is returned to its starting box. | 83 |
 
 **If you found none,** explain in 2 to 3 sentences why every requirement truly serves its Goal:
-
->
+> N/A
 
 ## Summary
 
 | | Count |
 |---|---|
-| Part 5 requirements carried over | |
-| New requirements added | |
-| Part 6 tests upgraded (out of 3) | |
-| Total requirements | |
-| Total test cases | |
-| Passed | |
-| Failed | |
-| Issues opened | |
-| Critical issues | |
+| Part 5 requirements carried over | 5 |
+| New requirements added | 18 |
+| Part 6 tests upgraded (out of 3) | 3 |
+| Total requirements | 21 |
+| Total test cases | 19 |
+| Passed | 9 |
+| Failed | 10 |
+| Issues opened | 15 |
+| Critical issues | 5 |
 
 **In one sentence, would you ship this system today? Why or why not?**
-
->
+> No, I would not ship this system, as almost every feature implemented is incomplete, except for the map.
