@@ -32,11 +32,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.window.Popup
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
@@ -379,15 +378,14 @@ fun App() {
                     .padding(bottom = 60.dp)
             )
             if (!showReportBox) {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .align(Alignment.BottomEnd)
             .padding(end = 16.dp, bottom = 16.dp)
-            .widthIn(max = 280.dp)
+            .width(280.dp)
             .height(180.dp)
-            .verticalScroll(rememberScrollState())
     ) {
-        repo.getAllReports().forEach { report ->
+        items(repo.getAllReports()) { report ->
             Text(
                 text = buildString {
                     append("${report.type}: ${report.description}")
