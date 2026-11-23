@@ -20,8 +20,13 @@ compose.desktop {
     application {
         mainClass = "edu.sdsu.cs250.team5.road_watch.MainKt"
 //Allows my ui to be visabled above google maps
-jvmArgs += listOf("-Dcompose.interop.blending=true")
-
+jvmArgs += listOf(
+            "-Dcompose.interop.blending=true",
+            "--add-opens=java.desktop/sun.awt=ALL-UNNAMED",
+            "--add-opens=java.desktop/java.awt.peer=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.lwawt=ALL-UNNAMED",
+            "--add-opens=java.desktop/sun.lwawt.macosx=ALL-UNNAMED"
+        )
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "edu.sdsu.cs250.team5.road_watch"
