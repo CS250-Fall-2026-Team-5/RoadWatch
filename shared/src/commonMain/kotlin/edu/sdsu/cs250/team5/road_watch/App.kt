@@ -32,6 +32,9 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.window.Popup
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
@@ -67,6 +70,9 @@ fun App() {
         }
         var hazardDescription by remember {
             mutableStateOf("")
+        }
+        var reportPage by remember {
+            mutableStateOf(0)
         }
 
         // (REQ-1): the backend store, remembered so reports survive recomposition
@@ -373,6 +379,58 @@ fun App() {
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 60.dp)
             )
+            if (!showReportBox) {
+    val allReports = repo.getAllReports()
+    val reportsPerPage = 1
+    val pageStart = reportPage * reportsPerPage
+    val displayedReports = allReports
+        .drop(pageStart)
+        .take(reportsPerPage)
+
+    Column(
+        modifier = Modifier
+            .align(Alignment.BottomEnd)
+            .padding(end = 16.dp, bottom = 16.dp)
+            .width(280.dp)
+            .height(180.dp)
+    ) {
+        displayedReports.forEach { report ->
+            Text(
+                text = buildString {
+                    append("${report.type}: ${report.description}")
+                    append("\nLocation: ${report.lat}, ${report.lng}")
+
+                    if (report.image != null) {
+                        append("\nImage: ${report.image}")
+                    } else {
+                        append("\nImage: None")
+                    }
+                },
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+        }
+
+        if (allReports.isNotEmpty()) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Button(
+                    enabled = reportPage > 0,
+                    onClick = { reportPage-- }
+                ) {
+                    Text("Previous")
+                }
+
+                Button(
+                    enabled = (reportPage + 1) < allReports.size,
+                    onClick = { reportPage++ }
+                ) {
+                    Text("Next")
+                }
+            }
+        }
+    }
+}
         }
     }
 }
