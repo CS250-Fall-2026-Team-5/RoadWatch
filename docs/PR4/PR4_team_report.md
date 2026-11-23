@@ -10,7 +10,10 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 | Second hazard report in the same session (new test) | Code bug | [#107](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/107) | Medium | High | Yomna | Fixed |
 | YF-03: Pin stays visible on the map | Code bug | [#82](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/82) | High | Medium | Yomna | Open |
 | YF-05: Report stored at the pin position | Missing feature | [#81](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/81) | High | High | Yomna | Open |
-| | | | | | | |
+| JB-01: Update the map to the correct location when searching using an address | Missing Feature | [#92](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/92) | High | High | Jordan | Open |
+| JB-02: Reject bad input in username registration | Code Bug | [#93](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/93) | High | Medium | Jordan | Fixed |
+| JB-03: Require account password to contain 8 - 20 characters | Code bug | [#94](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/95) | Medium | Medium | Jordan | Fixed |
+| JB-04: Let user create an account | Missing feature | [#95](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/95) | High | High | Jordan | Open |
 
 ## 2. Regression Log
 
@@ -23,7 +26,8 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 Tests still failing:
 - YF-03 (#82): on the desktop app the map is a Chromium view drawn on top of the UI, so the pin goes under it. Fixing it needs a new way to place the pin (clicking on the map).
 - YF-05 (#81): the pin location was never geo-mapped, so every report gets the fixed location 32.7757, -117.0719. Sorted as a missing feature.
--
+- JB-01 (#92): Although the search value is stored, and there seems to be a way to turn addresses into coordinates for google maps, there is no call directly to the map. To fix it we need to know how exactly the map is implemented on the main screen of the app and be able to call a function on said map to change the location.
+- JB-04 (#95): There is no storage for accounts implemented yet, but the app has implementation for storing text inputs of username and passwords and verifying the data within.
 
 ## 4. Feature Decision
 
