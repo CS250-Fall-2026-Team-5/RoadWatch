@@ -27,6 +27,7 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 | PR #119 – Kolina’s stored hazard display fix | No existing tests broke | The initial CI failure was a Kotlin test-file brace error, not a regression. After correcting it, `.\gradlew.bat check` completed successfully. |
 
 ## 3. Final Test Run
+![Board](/docs/PR4/screenshots/final_test_run.png)
 
 Tests still failing:
 - YF-03 (#82): on the desktop app the map is a Chromium view drawn on top of the UI, so the pin goes under it. Fixing it needs a new way to place the pin (clicking on the map).
