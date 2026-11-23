@@ -36,6 +36,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.height
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
@@ -383,7 +384,7 @@ fun App() {
             .align(Alignment.BottomEnd)
             .padding(end = 16.dp, bottom = 16.dp)
             .widthIn(max = 280.dp)
-            .heightIn(max = 180.dp)
+            .height(180.dp)
             .verticalScroll(rememberScrollState())
     ) {
         repo.getAllReports().forEach { report ->
