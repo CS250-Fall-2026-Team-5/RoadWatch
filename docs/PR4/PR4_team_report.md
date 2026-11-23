@@ -24,7 +24,7 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 
 | Fix (PR) | Test that broke | How it was resolved |
 |---|---|---|
-| | | |
+| PR #119 – Kolina’s stored hazard display fix | No existing tests broke | The initial CI failure was a Kotlin test-file brace error, not a regression. After correcting it, `.\gradlew.bat check` completed successfully. |
 
 ## 3. Final Test Run
 
