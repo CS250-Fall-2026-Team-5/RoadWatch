@@ -37,15 +37,20 @@ Tests still failing:
 
 ## 4. Feature Decision
 
-Feature:
-User story: As a ___, I want ___, so that ___.
-Why we chose it:
-Who owns which part:
-Test case 1:
-Test case 2:
-Issue:
+**Feature:**\
+**User story:** As a Developer, I want users to have the ability to create an account, so that only they can edit their hazard reports, and that the website isn't flooded with bots.\
+**Why we chose it:** Our team has created a registration / log ins system in our past project and feel it's the feature we could implement the best in the time frame we're working in.\
+**Who owns which part:**\
+**Login:** Kolina Kataonga\
+**Account Registration:** Jedimind\
+**Account Database:** Skyseye\
+**Logout / Whatever else needs doing:** Yomna\
+**Test case 1:** JB-04\
+**Test case 2:** JB-02\
+**Issue:** #123
 
 ## 5. Board Snapshot
 
 ## 6. Sprint Summary
+Our team has managed to fix a great number of bugs this sprint. We've fixed issues related to the pin feature, the hazard reports, and the process of storing said hazard reports. Unfortunately, there are still many parts of the project that are missing, many features of which weren't implemented before we received the project and thus cannot be fixed. This swayed our decision somewhat when choosing our next feature, as we knew some of the missing features we wanted to implement couldn't take shape until we implemented a previous feature that did not work yet. This heavily influenced our decision on the feature to make for the next sprint: the account creation. We've got a rough outline on what to start with from the bugs fixed this sprint and a good division of work that'll let us get everything done within the time frame we've been given.
 
