@@ -373,6 +373,21 @@ fun App() {
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 60.dp)
             )
+            repo.getAllReports().forEach { report ->
+    Text(
+        text = buildString {
+            append("${report.type}: ${report.description}")
+            append("\nLocation: ${report.lat}, ${report.lng}")
+
+            if (report.image != null) {
+                append("\nImage: ${report.image}")
+            } else {
+                append("\nImage: None")
+            }
+        },
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
+}
         }
     }
 }
