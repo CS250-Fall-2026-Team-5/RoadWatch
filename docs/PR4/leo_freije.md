@@ -7,10 +7,10 @@ PR: \[link\]
 .\\gradlew.bat :shared:jvmTest \--tests "edu.sdsu.cs250.team5.road\_watch.ReportValidatorTest.rejectsLessThanMinimumDescription"
 
 Before:  
-\!\[before\](/docs/PR4/screenshots/leo\_freije\_issue85\_before.png)
+![before](/docs/PR4/screenshots/leo\_freije\_issue85\_before.png)
 
 After:  
-\!\[after\](/docs/PR4/screenshots/leo\_freije\_issue85\_after.png)
+![after](/docs/PR4/screenshots/leo\_freije\_issue85\_after.png)
 
 Code Bug: ReportValidator.kt did not have a check for a minimum length.
 
@@ -21,9 +21,9 @@ PR: \[link\]
 .\\gradlew.bat :shared:jvmTest \--tests "edu.sdsu.cs250.team5.road\_watch.ReportValidatorTest.testMaximumDescriptionLength"
 
 Before:  
-\!\[before\](/docs/PR4/screenshots/leo\_freije\_issue86\_before.png)
+![before](/docs/PR4/screenshots/leo\_freije\_issue86\_before.png)
 
 After:  
-\!\[after\](/docs/PR4/screenshots/leo\_freije\_issue86\_after.png)
+![after](/docs/PR4/screenshots/leo\_freije\_issue86\_after.png)
 
-Code Bug: There was originally an equal sign in the code that checked the maximum report length.
+Code Bug: There was originally an equal sign in the code that incorrectly checked the maximum report length, which rejected reports of exactly 500 characters.
