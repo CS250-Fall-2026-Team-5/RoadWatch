@@ -36,9 +36,9 @@ Tests still failing:
 **Why we chose it:** Our team has created a registration / log ins system in our past project and feel it's the feature we could implement the best in the time frame we're working in.\
 **Who owns which part:**\
 **Login:** Kolina Kataonga\
-**Account Registration:** Jedimind\
-**Account Database:** Skyseye\
-**Logout / Whatever else needs doing:** Yomna\
+**Account Registration:** Leo Freije\
+**Account Database:** Jordan Baugh\
+**Logout / Whatever else needs doing:** Yomna Fassatoui\
 **Test case 1:** JB-04\
 **Test case 2:** JB-02\
 **Issue:** #123
