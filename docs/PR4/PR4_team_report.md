@@ -14,6 +14,10 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 | JB-02: Reject bad input in username registration | Code Bug | [#93](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/93) | High | Medium | Jordan | Fixed |
 | JB-03: Require account password to contain 8 - 20 characters | Code bug | [#94](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/95) | Medium | Medium | Jordan | Fixed |
 | JB-04: Let user create an account | Missing feature | [#95](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/95) | High | High | Jordan | Open |
+| LF-03: Fix rejecting hazard description below minimum length | Code Bug | [#85](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/85) | High | High | Leo | Fixed |
+| LF-06: Fix rejecting hazard description above maximum length  | Code Bug | [#86](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/86) | High| High | Leo | Fixed |
+| LF-01: Resolve rejecting unsupported image file type | Missing feature | [#84](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/84) | High | Medium | Leo | Open |
+
 
 ## 2. Regression Log
 
@@ -28,6 +32,7 @@ Tests still failing:
 - YF-05 (#81): the pin location was never geo-mapped, so every report gets the fixed location 32.7757, -117.0719. Sorted as a missing feature.
 - JB-01 (#92): Although the search value is stored, and there seems to be a way to turn addresses into coordinates for google maps, there is no call directly to the map. To fix it we need to know how exactly the map is implemented on the main screen of the app and be able to call a function on said map to change the location.
 - JB-04 (#95): There is no storage for accounts implemented yet, but the app has implementation for storing text inputs of username and passwords and verifying the data within.
+- LF-01 (#84): The option to attach an image to a hazard report is not yet implemented, so the test that checks if the attachment is a valid file type cannot pass yet before the feature is implemented.
 
 ## 4. Feature Decision
 
