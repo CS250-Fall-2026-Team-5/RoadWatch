@@ -1,10 +1,22 @@
+**Group 5:**
+
 Asher Plotsky: Asher-Branch
 
 Grant Phillips: grant/hazard-repository
 
 Moises Cortes: Basic Ui and Search Branch
 
-Debora Velazquez: req-8-validation branch, app’s hazard report validation and testing layer 
+Debora Velazquez: req-8-validation branch, app’s hazard report validation and testing layer
+
+**Group 6:**
+
+Jordan Baugh
+
+Leo Freije
+
+Kolina Katoanga
+
+Yomna Fassatoui
 
 In order for the app to work, you must include google maps API keys in you github secrets as well as in your local.properties file.  
 Add them to the local.properties in this format: 
@@ -40,13 +52,32 @@ Use the run configurations provided by the run widget in your IDE's toolbar. You
   - Standard run: `./gradlew :desktopApp:run`
 - iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
-### Running tests
+### How to run the tests
 
 Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:
 
 - Android tests: `./gradlew :shared:testAndroidHostTest`
 - Desktop tests: `./gradlew :shared:jvmTest`
 - iOS tests: `./gradlew :shared:iosSimulatorArm64Test`
+
+To run a specific test, navigate to:
+`shared/src/commonTest/kotlin/edu/sdsu/cs250/team5/road_watch`
+
+Choose a runnable test:
+- AccountCreationVerificationTests.kt
+- CoordinateLimitsTest.kt
+- HazardRepositoryTest.kt
+- PinPlacementTest.kt
+- ReportSubmissionControllerTest.kt
+- ReportValidator.kt
+- SharedCommonTest.kt
+
+There are two more tests under:
+- shared/src/jvmTest/kotlin/edu/sdsu/cs250/team5/road_watch/storage/SqliteHazardRepositoryTest.kt
+- shared/src/jvmTest/kotlin/edu/sdsu/cs250/team5/road_watch/SharedLogicDesktopTest.kt
+
+Example test format:
+`./gradlew :shared:jvmTest --test "edu.sdsu.cs250.team5.road_watch.[testname]"`
 
 ---
 
