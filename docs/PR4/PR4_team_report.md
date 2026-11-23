@@ -22,6 +22,7 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 | | | |
 
 ## 3. Final Test Run
+![Board](/docs/PR4/screenshots/final_test_run.png)
 
 Tests still failing:
 - YF-03 (#82): on the desktop app the map is a Chromium view drawn on top of the UI, so the pin goes under it. Fixing it needs a new way to place the pin (clicking on the map).
