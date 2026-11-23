@@ -34,6 +34,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.window.Popup
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.height
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
