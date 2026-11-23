@@ -31,6 +31,7 @@ import roadwatch.shared.generated.resources.compose_multiplatform
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.ui.window.Popup
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
@@ -46,7 +47,22 @@ fun App() {
         var searchText by remember {
             mutableStateOf("")
         }
+        var usernameText by remember {
+            mutableStateOf("")
+        }
+        var passwordText by remember {
+            mutableStateOf("")
+        }
+        var usernameRegText by remember {
+            mutableStateOf("")
+        }
+        var passwordRegText by remember {
+            mutableStateOf("")
+        }
         var isLoggedIn by remember {
+            mutableStateOf(false)
+        }
+        var isRegistering by remember {
             mutableStateOf(false)
         }
         var hazardDescription by remember {
@@ -107,6 +123,14 @@ fun App() {
                 ){
                     Text("Search")
                 }
+                //Implementing login screen
+                Button(
+                    onClick = {
+                        showLogin = !showLogin
+                    }
+                ){
+                    Text("Login")
+                }
             }
 
             //adding login variable and description variable
@@ -115,7 +139,7 @@ fun App() {
                     modifier = Modifier
                         .align(Alignment.TopEnd)
                         .padding(top = 80.dp, end = 18.dp)
-                        .size(width = 250.dp, height = 280.dp)
+                        .size(width = 250.dp, height = 330.dp)
                         .background(
                             MaterialTheme.colorScheme.surfaceVariant
                         )
@@ -129,19 +153,116 @@ fun App() {
                             text = "Login:",
                             style = MaterialTheme.typography.headlineSmall
                         )
+                        TextField(
+                            value = usernameText,
+                            onValueChange = {
+                                usernameText = it
+                            },
+                            placeholder = {
+                                Text("Username")
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 12.dp)
+                        )
+                        TextField(
+                            value = passwordText,
+                            onValueChange = {
+                                passwordText = it
+                            },
+                            placeholder = {
+                                Text("Password")
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 12.dp)
+                        )
                         Button(
                             onClick = {
+                                
                                 isLoggedIn = true
                                 showLogin = false
+                                
                             },
                             modifier = Modifier.padding(top = 30.dp)
                         ) {
                             Text("Log In")
                         }
+                        Button(
+                            onClick = {
+                                isRegistering = true;
+                                showLogin = false;
+                            },
+                            modifier = Modifier.padding(top = 10.dp)
+                        ) {
+                            Text("Register")
+                        }
                     }
                 }
             }
             //Enables hazard description box if user is logged in
+            if(isRegistering){
+               
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(end = 10.dp, bottom = 20.dp)
+                            .size(width = 300.dp, height = 300.dp)
+                            .background(
+                                MaterialTheme.colorScheme.surfaceVariant
+                            )
+                            .padding(20.dp)
+                    ){
+                        Column(
+                            modifier = Modifier.fillMaxSize()
+                        ){
+                            Text(
+                                text = "Register an Account",
+                                style = MaterialTheme.typography.headlineSmall
+                            )
+                            TextField(
+                                value = usernameRegText,
+                                onValueChange = {
+                                    usernameRegText = it
+                                },
+                                placeholder = {
+                                    Text("Username")
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 12.dp)
+                            )
+                            TextField(
+                                value = passwordRegText,
+                                onValueChange = {
+                                    passwordRegText = it
+                                },
+                                placeholder = {
+                                    Text("Password")
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 12.dp)
+                            )
+                            Button(
+                                onClick = {
+                                    try {
+                                       AccountValidator.validate(usernameRegText, passwordRegText)
+                                       isRegistering = false;
+                                    } catch (e: IllegalArgumentException) {
+                                        
+                                    }
+                                },
+                                modifier = Modifier
+                                    .padding(top = 16.dp)
+                                    .align(Alignment.End)
+                            ){
+                                Text("Submit")
+                            }
+                        }
+                    }
+                }
+            
             if(showReportBox && isLoggedIn){
                 Box(
                     modifier = Modifier
@@ -203,17 +324,7 @@ fun App() {
                     }
                 }
             }
-            //Implementing login screen
-            Button(
-                onClick = {
-                    showLogin = !showLogin
-                },
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(40.dp)
-            ){
-                Text("Login")
-            }
+            
 
             //Sets current position of pin on home page
             var pinOffset by remember {
