@@ -32,6 +32,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.window.Popup
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.widthIn
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
@@ -373,25 +377,30 @@ fun App() {
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 60.dp)
             )
-            Column(
-    modifier = Modifier
-        .align(Alignment.BottomEnd)
-        .padding(end = 16.dp, bottom = 16.dp)
-) {
-    repo.getAllReports().forEach { report ->
-        Text(
-            text = buildString {
-                append("${report.type}: ${report.description}")
-                append("\nLocation: ${report.lat}, ${report.lng}")
+            if (!showReportBox) {
+    Column(
+        modifier = Modifier
+            .align(Alignment.BottomEnd)
+            .padding(end = 16.dp, bottom = 16.dp)
+            .widthIn(max = 280.dp)
+            .heightIn(max = 180.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
+        repo.getAllReports().forEach { report ->
+            Text(
+                text = buildString {
+                    append("${report.type}: ${report.description}")
+                    append("\nLocation: ${report.lat}, ${report.lng}")
 
-                if (report.image != null) {
-                    append("\nImage: ${report.image}")
-                } else {
-                    append("\nImage: None")
-                }
-            },
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
+                    if (report.image != null) {
+                        append("\nImage: ${report.image}")
+                    } else {
+                        append("\nImage: None")
+                    }
+                },
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+        }
     }
 }
         }
