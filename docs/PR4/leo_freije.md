@@ -2,7 +2,7 @@
 
 **Bug \#1:** Issue 85 “\[LF-03\] Fix rejecting hazard description below minimum length”  
 Issue: **[\#85](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/85)**  
-PR: \[link\]
+PR: [link](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/pull/118)
 
 .\\gradlew.bat :shared:jvmTest \--tests "edu.sdsu.cs250.team5.road\_watch.ReportValidatorTest.rejectsLessThanMinimumDescription"
 
@@ -16,7 +16,7 @@ Code Bug: ReportValidator.kt did not have a check for a minimum length.
 
 **Bug \#2:** Issue 86 “\[LF-06\] Fix rejecting hazard description above maximum length”  
 Issue: **[\#86](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/86)**   
-PR: \[link\]
+PR: [link](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/pull/118)
 
 .\\gradlew.bat :shared:jvmTest \--tests "edu.sdsu.cs250.team5.road\_watch.ReportValidatorTest.testMaximumDescriptionLength"
 
