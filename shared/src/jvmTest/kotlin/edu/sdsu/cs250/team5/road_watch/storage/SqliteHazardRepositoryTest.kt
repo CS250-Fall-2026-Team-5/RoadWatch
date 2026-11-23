@@ -45,6 +45,7 @@ class SqliteHazardRepositoryTest {
             Files.deleteIfExists(databaseFile)
         }
     }
+
     @Test
     fun storedReportsAreReturnedInAscendingIdOrder() {
         val databaseFile = Files.createTempFile("roadwatch-order-test-", ".db")
@@ -88,6 +89,7 @@ class SqliteHazardRepositoryTest {
             Files.deleteIfExists(databaseFile)
         }
     }
+
     @Test
     fun emptyDatabaseReturnsNoReports() {
         val databaseFile = Files.createTempFile("roadwatch-empty-test-", ".db")
@@ -100,6 +102,33 @@ class SqliteHazardRepositoryTest {
             val reports = repository.getAllReports()
 
             assertEquals(0, reports.size)
+        } finally {
+            Files.deleteIfExists(databaseFile)
+        }
+    }
+
+    @Test
+    fun storedImageIsRetrievedUnchanged() {
+        val databaseFile = Files.createTempFile("roadwatch-test-", ".db")
+        val databaseUrl = "jdbc:sqlite:${databaseFile.toAbsolutePath()}"
+
+        try {
+            initializeDatabase(databaseUrl)
+            val repository = SqliteHazardRepository(databaseUrl)
+
+            val image = "pothole.png"
+
+            repository.addReport(
+                type = HazardType.POTHOLE,
+                description = "Pothole with image",
+                lat = 32.7757,
+                lng = -117.0719,
+                image = image
+            )
+
+            val retrieved = repository.getAllReports().single()
+
+            assertEquals(image, retrieved.image)
         } finally {
             Files.deleteIfExists(databaseFile)
         }
