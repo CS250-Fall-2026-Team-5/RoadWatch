@@ -34,9 +34,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.ui.window.Popup
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 
 internal var mapSearchRequest by mutableStateOf("")
 @Composable
@@ -72,6 +69,9 @@ fun App() {
         }
         var hazardDescription by remember {
             mutableStateOf("")
+        }
+        var reportPage by remember {
+            mutableStateOf(0)
         }
 
         // (REQ-1): the backend store, remembered so reports survive recomposition
@@ -379,14 +379,21 @@ fun App() {
                     .padding(bottom = 60.dp)
             )
             if (!showReportBox) {
-    LazyColumn(
+    val allReports = repo.getAllReports()
+    val reportsPerPage = 1
+    val pageStart = reportPage * reportsPerPage
+    val displayedReports = allReports
+        .drop(pageStart)
+        .take(reportsPerPage)
+
+    Column(
         modifier = Modifier
             .align(Alignment.BottomEnd)
             .padding(end = 16.dp, bottom = 16.dp)
             .width(280.dp)
             .height(180.dp)
     ) {
-        items(repo.getAllReports()) { report ->
+        displayedReports.forEach { report ->
             Text(
                 text = buildString {
                     append("${report.type}: ${report.description}")
@@ -400,6 +407,26 @@ fun App() {
                 },
                 modifier = Modifier.padding(bottom = 8.dp)
             )
+        }
+
+        if (allReports.isNotEmpty()) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Button(
+                    enabled = reportPage > 0,
+                    onClick = { reportPage-- }
+                ) {
+                    Text("Previous")
+                }
+
+                Button(
+                    enabled = (reportPage + 1) < allReports.size,
+                    onClick = { reportPage++ }
+                ) {
+                    Text("Next")
+                }
+            }
         }
     }
 }
