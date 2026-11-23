@@ -17,7 +17,8 @@ Team 6: Kolina Katoanga, Yomna Fassatoui, Jordan Baugh, Leo Freije
 | LF-03: Fix rejecting hazard description below minimum length | Code Bug | [#85](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/85) | High | High | Leo | Fixed |
 | LF-06: Fix rejecting hazard description above maximum length  | Code Bug | [#86](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/86) | High| High | Leo | Fixed |
 | LF-01: Resolve rejecting unsupported image file type | Missing feature | [#84](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/84) | High | Medium | Leo | Open |
-
+| Stored hazard reports are not displayed | Missing feature | [#110](https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/110) | High | High | Kolina | Fixed |
+| Multiple stored hazard reports overlap or extend off screen | Code bug | [#117]https://github.com/CS250-Fall-2026-Team-5/RoadWatch/issues/117 | Medium | High | Kolina | Fixed |
 
 ## 2. Regression Log
 
